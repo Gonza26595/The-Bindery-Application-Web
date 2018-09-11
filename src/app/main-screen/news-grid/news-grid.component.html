@@ -1,0 +1,87 @@
+<app-header></app-header>
+<div class="noticias container-fluid">
+  <div class="row pb-2 row-1-container">
+    <div class="col-xl-5 col-lg-5 col-md-5 pr-1 pl-0 news-1-container" style="height: 100%;">
+      <img class="h-100 w-100" src="assets/images/masquerade.jpg"/>
+      <div class="position-relative  float-right" style="bottom: 80%">
+        <h2 class="news-title position-relative p-4 text-center" style="margin-bottom: 30px; font-size: 1.2rem;background: #17d9c2;">YES: Immigration Narratives</h2>
+        <span (click)="goToDetail()" class=" read-more float-right  p-1" style="margin-top: 120px;">Read More >>></span>            
+      </div>
+    </div>
+    <div style="height: 100%;" class="row col-xl-4 col-lg-4 col-md-4 pl-1 row-2-container">
+      <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-0 pr-2 pb-1">
+        <img class="h-100 w-50" src="assets/images/masquerade.jpg"/>
+        <div class="w-50 h-100 float-right" style="background: #eeeeee">
+          <h2 style="font-size: 1.1rem" class="news-title p-2 mt-4">The Student Loan Serenity Prayer</h2>
+          <span (click)="goToDetail()" class="read-more float-right p-1 mt-4">Read More >>></span>
+        </div>
+      </div>            
+      <div style="height: 100%;" class="col-xl-12 col-lg-12 col-md-12 h-50 pl-0 pr-2">
+        <img class="h-100 w-50 float-right" src="assets/images/masquerade.jpg"/>
+        <div class="w-50 h-100 float-right" style=" background: #193078">
+          <h2 style="font-size: 1.1rem; color: white" class="news-title p-2 mt-4">The Student Loan Serenity Prayer</h2>
+          <span (click)="goToDetail()" class="read-more float-right p-1 mt-4">Read More >>></span>
+      </div>
+      </div>   
+    </div>
+    <div style="height: 100%;" class="col-xl-3 col-lg-3 col-md-3 p-0 news-4-container">
+      <img class="w-100 h-100" src="assets/images/masquerade.jpg"/>
+      <div style="bottom: 80%;" class="position-relative float-right">
+        <h2 class="news-title p-4 text-center" style="font-size: 1.2rem;background: #17d9c2;">The blank page syndrome</h2>
+        <span (click)="goToDetail()" class="read-more p-1 float-right" style="margin-top: 135px">Read More >>></span>
+      </div>    
+    </div>        
+  </div>
+  <div class="row  mb-1 row-3-container">
+    <div  class="h-100 col-xl-3 col-lg-3 col-md-3 pl-0 pr-0 news-5-container">
+      <img src="assets/images/masquerade.jpg" class="w-100 h-100 position-relative"/>
+      <div style="bottom: 80%;" class="position-relative float-right pl-5">
+        <h2 class="news-title p-3" style="font-size: 1.2rem;background: #17d9c2;">'Black Panther' Brings Hope and Pride</h2>
+        <span (click)="goToDetail()" class="read-more  p-1 float-right" style="margin-top: 59px">Read More >>></span>
+      </div>
+     </div>
+     <div style="height: 100%;" class="col-xl-4 col-lg-4 col-md-4 row pl-0 row-4-container ">
+      <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0 pb-1">
+        <img class="h-100 w-50 position-relative float-right" src="assets/images/masquerade.jpg"/>
+        <div class="float-left w-50 h-100  pl-2 position-relative" style="background: #eeeeee">
+          <h2 style="font-size: 1.1rem;" class="mt-4 news-title">YES: Immigration Narratives</h2>
+          <span (click)="goToDetail()" class="read-more position-relative float-right p-1">Read More >>></span>
+        </div>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0">
+        <img class="h-100 w-50 position-relative float-left " src="assets/images/masquerade.jpg"/>
+        <div class="float-right w-50 h-100  pl-2 position-relative" style="background: #193078">
+          <h2 style="font-size: 1.1rem;  color: white" class="news-title mt-4">YES: Immigration Narratives</h2>
+          <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1">Read More >>></span>
+        </div>
+      </div>  
+     </div>
+     <div style="height: 100%;" class="col-xl-2 col-lg-2 col-md-2 pr-2 pl-2 what-are-you-bound-to-container">
+      <div class="h-100 pl-2 pr-2" style="background: #193078;color: white;">
+        <h2  style="font-size: 1.5rem;" class="pt-4 what-are-you-bound-to-title text-uppercase">What are you bound to?</h2>
+        <p  style="font-size: 0.8rem;font-family: 'Roboto',sans-serif;">We welcome prospective clients to share their projects with us, 
+            contributors to submit their original work to publish in The Bindery</p>
+       </div>
+      </div>
+      <div style="height: 100%;" class="row col-xl-3 col-lg-3 col-md-3 p-0 row-5-container">
+        <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0 pb-1">
+          <img class="h-100 w-50 float-right" src="assets/images/masquerade.jpg"/>
+          <div class=" w-50 float-left h-100 " style="background: #eeeeee">
+            <h2 style="font-size: 1.0rem;" class="mt-4 pl-2 news-title">YES: Immigration Narratives</h2>
+            <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1" >Read More >>></span>
+          </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0">
+           <img class="h-100 w-50 " src="assets/images/masquerade.jpg"/>
+           <div class="w-50 h-100 float-right  pl-2" style="background: #193078">
+              <h2  style="font-size: 1.0rem; color: white" class="news-title mt-4">YES: Immigration Narratives</h2>
+              <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-2" >Read More >>></span>
+            </div>
+        </div> 
+       </div>    
+  </div>
+  <app-agenda-grid></app-agenda-grid>
+  <app-gallery-grid></app-gallery-grid>
+</div>
+<app-footer></app-footer>
+

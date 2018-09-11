@@ -1,0 +1,27 @@
+.public-knowledge-radio h2{ 
+    font-family: 'Fira Sans Condensed',sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+.public-knowledge-radio span {
+    font-family: 'Fira Sans Condensed',sans-serif;
+    text-transform: uppercase;
+    color: white;
+    background: black;
+}
+
+.the-bindery-title {
+    color: #193078;
+    font-family:  'Prompt',sans-serif;
+}
+
+.the-bindery-title h1 {
+    text-transform: uppercase;
+    font-size: 3rem;
+}
+
+.the-bindery-title span {
+    font-size: 0.7rem;
+}

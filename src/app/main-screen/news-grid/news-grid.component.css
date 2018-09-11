@@ -1,0 +1,145 @@
+::ng-deep .row{
+    margin-left: 0px;
+}
+
+
+.row-1-container{
+  height: 350px;
+}
+
+.row-3-container{
+  height: 220px;
+}
+
+  .read-more{
+      text-transform: uppercase;
+      font-family: 'Fira Sans Condensed',sans-serif;
+      font-size: 0.8rem;
+      background: #17d9c2;
+      cursor: pointer;
+  }
+
+
+ .news-title{
+    font-size: 1.0rem;
+    font-family: 'Raleway', sans-serif;
+  }
+
+  .what-are-you-bound-to-title{
+    font-weight: 600;
+    
+    font-family: 'Fira Sans Condensed',sans-serif; 
+  }
+
+
+
+  @media only screen and (min-width: 300px) and (max-width:576px){
+
+
+    .row-1-container{
+     height: 100%; 
+     margin-right: 0px!important;
+    }
+
+  .news-1-container{
+    height: 250px!important;
+     padding-right: 0px!important;
+     padding-bottom: 5px!important;
+   }
+
+   .news-1-container div {
+     right: 0%!important;
+   }
+
+   .news-1-container div span {
+     margin-top: 40px!important;
+   }
+
+   .row-2-container{
+     height: 350px!important;
+     padding-left: 0px!important;
+     padding-right: 0px!important;
+   }
+
+   .row-2-container div {
+     padding-right: 0px!important;
+   }
+
+   .news-4-container{
+     height: 175px!important;
+     padding-top: 5px!important;
+   }
+
+   .news-4-container img{
+     width: 50%!important;
+   }
+
+   .news-4-container div{
+     width: 50%!important;
+     float: right;
+     bottom: 0%!important;
+     background: #eeeeee!important;
+     height: 100%!important;
+   }
+
+   .row-3-container{
+     height: 100%!important;
+     margin-right: 0px!important; 
+   }
+
+   .news-5-container{
+     height: 175px!important;
+     padding-bottom: 5px!important;
+   }
+
+   .news-5-container img{
+    width: 50%!important;
+   }
+
+   .news-5-container div{
+    width: 50%!important;
+    float: right;
+    bottom: 0%!important;
+    background: #eeeeee!important;
+    height: 100%!important;
+    padding-left: 0px!important;
+   }
+
+   .news-5-container div h2{
+    background: none!important;
+
+  }
+
+  .news-5-container span{
+    margin-top: 0px!important;
+  }
+
+
+   .row-4-container{
+     padding-right: 0px!important;
+     height: 350px!important;
+   }
+
+   .row-4-container div {
+     padding-left: 0!important;
+
+   }
+
+   .news-4-container div h2{
+     background: none!important;
+   }
+
+   .news-4-container span{
+     margin-top: 0px!important;
+   }
+
+   .what-are-you-bound-to-container{
+     display: none!important;
+   }
+
+   .row-5-container{
+     height: 350px!important;
+     padding-top: 5px!important;
+   }
+
+  }
