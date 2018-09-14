@@ -1,0 +1,14 @@
+::ng-deep .row{
+  margin-left: 0px;
+}
+
+
+.side-bar{
+  padding-left: 0px!important;
+  height: 300px;
+  background: #193078;
+}
+
+.creator-options{
+  color: black;
+}

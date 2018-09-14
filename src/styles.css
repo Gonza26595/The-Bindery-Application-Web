@@ -91,3 +91,9 @@
   height: 100%;
   z-index: 0;
 }
+
+.btn-primary, .btn-primary:disabled{
+  background-color: #17d9c2;
+  border-color:  #17d9c2;
+  color: black;
+}

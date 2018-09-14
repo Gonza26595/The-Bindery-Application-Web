@@ -1,4 +1,9 @@
-.public-knowledge-radio h2{ 
+
+.footer-content{
+    height: 135px!important;
+}
+
+.public-knowledge-radio h2{
     font-family: 'Fira Sans Condensed',sans-serif;
     font-weight: 700;
     text-transform: uppercase;
@@ -24,4 +29,66 @@
 
 .the-bindery-title span {
     font-size: 0.7rem;
+}
+
+@media only screen and (min-width: 300px) and (max-width:576px){
+
+
+    .footer{
+        padding-right: 5px!important;
+    padding-left: 5px!important;
+    }
+
+    .footer-content{
+        height: 95px!important;
+    }
+
+    .the-bindery-title {
+        max-width: 55%!important;
+        flex: 0 0 55%!important;
+        padding-right: 0px!important;
+    }
+
+    .public-knowledge-radio {
+        flex: 0 0 45%!important;
+        max-width: 45%!important;
+        padding-left: 0px!important;
+        padding-right: 0px!important;
+    }
+
+    .public-knowledge-radio h2{
+        font-size: 1rem!important;
+    }
+
+    .public-knowledge-radio span{
+        font-size: 0.6rem!important;
+    }
+
+
+
+    .the-bindery-title{
+        margin-left: 0px!important;
+
+    }
+
+    .the-bindery-title div{
+        width: 100%;
+        float: left!important;
+    }
+
+    .soundcloud-logo{
+        display: none;
+    }
+
+    .the-bindery-title h1{
+        font-size: 1.5rem;
+        float: right;
+    }
+
+    .the-bindery-title span{
+        float: right;
+        font-size: 0.4rem;
+    }
+
+
 }

@@ -1,0 +1,20 @@
+<main role="main" class="container">
+   <div class="starter-template">
+     <h1 class="mb-4 mt-4">Events</h1>
+   </div>
+   <table class="table">
+     <thead>
+       <tr>
+         <th scope="col">Name</th>
+         <th scope="col"></th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr *ngFor="let event of eventsList">
+         <td>{{event.title}}</td>
+         <td>
+           <a class="float-right" routerLink="/empretec/users/{{user.type}}/{{user.id}}/edit">Edit</a>
+         </td>
+     </tbody>
+   </table>
+ </main>

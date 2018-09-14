@@ -1,0 +1,21 @@
+<main role="main" class="container">
+  <div class="starter-template">
+    <h1 class="mb-4 mt-4">Images</h1>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersList">
+        <td>{{user.name}} {{user.surname}}</td>
+        <td>{{user.type}}</td>
+        <td>
+          <a class="float-right" routerLink="/empretec/users/{{user.type}}/{{user.id}}/edit">Edit</a>
+        </td>
+    </tbody>
+  </table>
+</main>

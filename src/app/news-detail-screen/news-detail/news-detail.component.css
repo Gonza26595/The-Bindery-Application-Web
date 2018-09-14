@@ -1,3 +1,11 @@
+::ng-deep .row{
+    margin-left: 0px;
+}
+
+.news-elements{
+    width: 75%;
+}
+
 .section, .date, .author {
     font-family: 'Fira Sans Condensed',sans-serif;
     font-weight: 400;
@@ -8,6 +16,8 @@
 
 h1{
     font-family: 'Raleway',sans-serif;
+    color: #193078;
+    font-size: 3rem;
 }
 
 .news-content{
@@ -32,4 +42,37 @@ h1{
 
 .side-bar h6{
     color: #16d3c2;
+}
+
+
+@media only screen and (min-width: 300px) and (max-width:576px){
+
+    .aside{
+        display: none;
+    }
+
+    .news-content{
+      padding-right: 5px!important;
+    padding-left: 5px!important;
+    }
+
+    .news-row{
+        width: 100%;
+        margin-left: 0px!important;
+    }
+
+    .news-row div{
+       padding: 0.3rem!important;
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .news-elements{
+        padding: 0.5rem!important;
+        width: 100%;
+    }
+
+    .news-elements h1{
+        font-size: 2rem;
+    }
 }

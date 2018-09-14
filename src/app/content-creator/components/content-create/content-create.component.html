@@ -1,0 +1,45 @@
+<app-header></app-header>
+<main role="main" class="container-fluid mb-3">
+  <div class="row"  style="width: 100%">
+  <aside class="side-bar col-2">
+      <div class="p-4 mt-4">
+        <div class="mb-3  creator-options">
+        <button class="btn btn-primary p-3" id="news-list" (click)="setToNewsList()">News</button>
+      </div>
+      <div class="mb-1 creator-options">
+        <button class="btn btn-primary p-3" id="events-list" (click)="setToEventsList()">Events</button>
+      </div>
+      <div class="mt-3 creator-options">
+        <button class="btn btn-primary p-3" id="gallery-images-list" (click)="setToGalleryImagesList()">Images</button>
+      </div>
+      </div>
+    </aside>
+
+
+
+    <div *ngIf="eventsList || galleryImagesList || newsList"  class="col-8">
+      <app-event-list *ngIf="eventsList"></app-event-list>
+      <app-gallery-image-list *ngIf="galleryImagesList"></app-gallery-image-list>
+      <app-news-list *ngIf="newsList"></app-news-list>
+    </div>
+
+
+    <div *ngIf="newEvent || newGalleryImage || newNews " class="col-8">
+      <app-event-create (goBack)="backFromNewEvent($event)"  *ngIf="newEvent"></app-event-create>
+      <app-gallery-image-create (goBack)="backFromNewGalleryImage($event)"  *ngIf="newGalleryImage"></app-gallery-image-create>
+      <app-news-create (goBack)="backFromNewNews($event)" *ngIf="newNews"></app-news-create>
+    </div>
+
+
+
+    <aside class="side-bar col-2">
+        <div class="p-4 mt-4">
+          <div *ngIf="eventsList || galleryImagesList || newsList" class="mb-3  creator-options">
+          <button class="btn btn-primary p-3 mb-5" id="button-new" (click)="setRoute()">New Content</button>
+        </div>
+        </div>
+      </aside>
+
+  </div>
+</main>
+<app-footer></app-footer>
