@@ -18,16 +18,22 @@
 
 
     <div *ngIf="eventsList || galleryImagesList || newsList"  class="col-8">
-      <app-event-list *ngIf="eventsList"></app-event-list>
-      <app-gallery-image-list *ngIf="galleryImagesList"></app-gallery-image-list>
-      <app-news-list *ngIf="newsList"></app-news-list>
+      <app-event-list (editEvent)="goToEditEvent($event)" *ngIf="eventsList"></app-event-list>
+      <app-gallery-image-list (editGalleryImage)="goToEditImageGallery($event)" *ngIf="galleryImagesList"></app-gallery-image-list>
+      <app-news-list (editNews)="goToEditNews($event)" *ngIf="newsList"></app-news-list>
     </div>
 
 
     <div *ngIf="newEvent || newGalleryImage || newNews " class="col-8">
-      <app-event-create (goBack)="backFromNewEvent($event)"  *ngIf="newEvent"></app-event-create>
-      <app-gallery-image-create (goBack)="backFromNewGalleryImage($event)"  *ngIf="newGalleryImage"></app-gallery-image-create>
-      <app-news-create (goBack)="backFromNewNews($event)" *ngIf="newNews"></app-news-create>
+      <app-event-create (goBack)="backFromEvent($event)"  *ngIf="newEvent"></app-event-create>
+      <app-gallery-image-create (goBack)="backFromGalleryImage($event)"  *ngIf="newGalleryImage"></app-gallery-image-create>
+      <app-news-create (goBack)="backFromNews($event)" *ngIf="newNews"></app-news-create>
+    </div>
+
+    <div *ngIf= "editEvent || editGalleryImage || editNews" class="col-8">
+      <app-event-edit [eventId]="contentId" (goBack)="backFromEvent($event)"  *ngIf="editEvent"></app-event-edit>
+      <app-gallery-image-edit [galleryImageId]="contentId" (goBack)="backFromGalleryImage($event)"  *ngIf="editGalleryImage"></app-gallery-image-edit>
+      <app-news-edit [newsId]="contentId" (goBack)="backFromNews($event)" *ngIf="editNews"></app-news-edit>
     </div>
 
 
@@ -42,4 +48,4 @@
 
   </div>
 </main>
-<app-footer></app-footer>
+

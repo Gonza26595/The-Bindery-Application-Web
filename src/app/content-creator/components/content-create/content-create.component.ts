@@ -14,6 +14,11 @@ export class ContentCreateComponent implements OnInit {
   newsList: boolean = true;
   eventsList: boolean = false;
   galleryImagesList: boolean = false;
+  editEvent: boolean = false;
+  editGalleryImage = false;
+  editNews: boolean = false;
+  contentId: number;
+
 
 
   constructor() { }
@@ -29,6 +34,9 @@ export class ContentCreateComponent implements OnInit {
     this.newsList = true;
     this.eventsList = false;
     this.galleryImagesList = false;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = false;
   }
 
   public setToEventsList(){
@@ -38,6 +46,9 @@ export class ContentCreateComponent implements OnInit {
     this.newsList = false;
     this.eventsList = true;
     this.galleryImagesList = false;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = false;
   }
 
 
@@ -48,6 +59,9 @@ export class ContentCreateComponent implements OnInit {
     this.newsList = false;
     this.eventsList = false;
     this.galleryImagesList = true;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = false;
   }
 
 
@@ -58,6 +72,9 @@ export class ContentCreateComponent implements OnInit {
     this.newNews = true;
     this.newEvent = false;
     this.newGalleryImage = false;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = false;
   }
 
   public setToNewEvent(){
@@ -67,6 +84,9 @@ export class ContentCreateComponent implements OnInit {
     this.newNews = false;
     this.newEvent = true;
     this.newGalleryImage = false;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = false;
   }
 
 
@@ -77,6 +97,46 @@ export class ContentCreateComponent implements OnInit {
     this.newNews = false;
     this.newEvent = false;
     this.newGalleryImage = true;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = false;
+  }
+
+
+  public setToEditGalleryImage(){
+    this.newsList = false;
+    this.eventsList = false;
+    this.galleryImagesList = false;
+    this.newNews = false;
+    this.newEvent = false;
+    this.newGalleryImage = false;
+    this.editEvent = false;
+    this.editGalleryImage = true;
+    this.editNews = false;
+  }
+
+  public setToEditNews(){
+    this.newsList = false;
+    this.eventsList = false;
+    this.galleryImagesList = false;
+    this.newNews = false;
+    this.newEvent = false;
+    this.newGalleryImage = false;
+    this.editEvent = false;
+    this.editGalleryImage = false;
+    this.editNews = true;
+  }
+
+  public setToEditEvent(){
+    this.newsList = false;
+    this.eventsList = false;
+    this.galleryImagesList = false;
+    this.newNews = false;
+    this.newEvent = false;
+    this.newGalleryImage = false;
+    this.editEvent = true;
+    this.editGalleryImage = false;
+    this.editNews = false;
   }
 
   public setRoute(){
@@ -92,25 +152,43 @@ export class ContentCreateComponent implements OnInit {
 
   }
 
-  backFromNewEvent(event){
+  backFromEvent(event){
     if(event == false){
       this.disableButtonsList(false)
       this.setToEventsList()
     }
   }
 
-  backFromNewGalleryImage(event){
+  backFromGalleryImage(event){
     if(event == false){
       this.disableButtonsList(false)
       this.setToGalleryImagesList()
     }
   }
 
-  backFromNewNews(event){
+  backFromNews(event){
     if(event == false){
       this.disableButtonsList(false)
       this.setToNewsList()
     }
+  }
+
+  goToEditImageGallery(event){
+    this.contentId = event
+    this.disableButtonsList(true)
+    this.setToEditGalleryImage();
+  }
+
+  goToEditNews(event){
+    this.contentId = event
+    this.disableButtonsList(true)
+    this.setToEditNews();
+  }
+
+  goToEditEvent(event){
+    this.contentId = event
+    this.disableButtonsList(true)
+    this.setToEditEvent();
   }
 
   disableButtonsList(disabled:boolean){

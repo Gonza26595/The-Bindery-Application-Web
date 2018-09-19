@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ContentCreatorService } from '../../services/content-creator.service';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { ContentCreatorService } from '../../../services/content-creator.service';
 
 @Component({
   selector: 'app-event-list',
@@ -10,6 +10,7 @@ export class EventListComponent implements OnInit {
 
 
   eventsList = new Array();
+  @Output() editEvent = new EventEmitter();
 
   constructor(private _contentCreatorService:ContentCreatorService) { }
 
@@ -22,6 +23,10 @@ export class EventListComponent implements OnInit {
 
       }
     )
+  }
+
+  public eventEdit(id){
+    this.editEvent.emit(id);
   }
 
 }

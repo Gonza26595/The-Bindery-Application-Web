@@ -15,4 +15,7 @@ export class SystemConfiguration {
     public static NEWS: string = SystemConfiguration.API_URL + "news";
     public static EVENTS: string = SystemConfiguration.API_URL + "events";
     public static GALLERY_IMAGES: string = SystemConfiguration.API_URL + "galleryImages";
+    public static NEWS_ID:string = SystemConfiguration.API_URL + "news/:newsId"
+    public static EVENTS_ID:string = SystemConfiguration.API_URL + "events/:eventId"
+    public static GALLERY_IMAGES_ID:string = SystemConfiguration.API_URL + "galleryImages/:galleryImageId"
   }

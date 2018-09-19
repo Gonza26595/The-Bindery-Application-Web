@@ -5,7 +5,7 @@ import { NewsDetailComponent } from './news-detail/news-detail.component';
 
 
 const routes : Routes = [
- {path:"news-detail",component:NewsDetailComponent}
+ {path:"news-detail/:newsId",component:NewsDetailComponent}
 ]
 
 

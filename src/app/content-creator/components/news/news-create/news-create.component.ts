@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
-import { ContentCreatorService } from '../../services/content-creator.service';
-import { News } from '../../classes/news';
+import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
+import { ContentCreatorService } from '../../../services/content-creator.service';
+import { News } from '../../../classes/news';
 
 @Component({
   selector: 'app-news-create',
@@ -14,6 +14,7 @@ export class NewsCreateComponent implements OnInit {
   newsCreateForm: FormGroup
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
+  disableButtonSave: boolean = false;
 
 
 
@@ -53,6 +54,10 @@ export class NewsCreateComponent implements OnInit {
     this._contentCreateService.saveNews(newNews).subscribe(
       data=>{
         this.successMessage = "La noticia fue creada exitosamente"
+        this.disableButtonSave = true;
+        setTimeout(() =>{
+          this.back();
+        },2000);
       },
       error=>{
 

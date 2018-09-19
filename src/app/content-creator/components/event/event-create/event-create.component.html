@@ -15,7 +15,7 @@
         <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
       </div>
       <div class=" col-6 mt-3">
-          <button type="submit" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="saveNewEvent()">Save</button>
+          <button type="submit"  [disabled]="disableButtonSave" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="saveNewEvent()">Save</button>
         </div>
       </div>
   </form>

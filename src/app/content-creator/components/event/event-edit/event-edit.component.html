@@ -1,0 +1,22 @@
+<app-status-message [successMessage]="successMessage"></app-status-message>
+<div>
+    <div class="starter-template">
+        <h1 class="mt-4 mb-4">Edit event</h1>
+      </div>
+<form class="event-creation m-auto w-50" (keydown.enter)="$event.preventDefault()"[formGroup]="eventEditForm">
+   <div class="form-group mb-4">
+      <input type="text" formControlName="title"  class="form-control" id="title" placeholder="Coloque el título" autofocus>
+    </div>
+    <div class="form-group mt-5">
+        <textarea class="form-control" maxlength="500" contenteditable="true" placeholder="Coloque la descripción" formControlName="contentParagraph" rows="8" id="content-paragraph"></textarea>
+    </div>
+    <div class="row mt-5">
+      <div class=" col-6 mt-3">
+        <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
+      </div>
+      <div class=" col-6 mt-3">
+          <button type="submit" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateEvent()">Save</button>
+        </div>
+      </div>
+  </form>
+</div>

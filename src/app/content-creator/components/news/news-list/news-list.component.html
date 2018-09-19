@@ -1,6 +1,6 @@
 <main role="main" class="container">
   <div class="starter-template">
-    <h1 class="mb-4 mt-4">Images</h1>
+    <h1 class="mb-4 mt-4">News</h1>
   </div>
   <table class="table">
     <thead>
@@ -10,11 +10,10 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of usersList">
-        <td>{{user.name}} {{user.surname}}</td>
-        <td>{{user.type}}</td>
+      <tr *ngFor="let news of newsList">
+      <td>{{news.title}}</td>
         <td>
-          <a class="float-right" routerLink="/empretec/users/{{user.type}}/{{user.id}}/edit">Edit</a>
+          <button class="float-right" (click)="newsEdit(news.id)">Edit</button>
         </td>
     </tbody>
   </table>

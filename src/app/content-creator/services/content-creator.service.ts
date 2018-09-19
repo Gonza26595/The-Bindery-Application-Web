@@ -50,4 +50,41 @@ export class ContentCreatorService extends BaseService {
    public getImages(){
     return super.get(SystemConfiguration.GALLERY_IMAGES);
    }
+
+   public getEventById(eventId){
+    return super.get(SystemConfiguration.EVENTS_ID.replace(':eventId',eventId))
+   }
+
+   public getNewsById(newsId){
+    return super.get(SystemConfiguration.NEWS_ID.replace(':newsId',newsId));
+   }
+
+   public getImageById(galleryImageId){
+    return super.get(SystemConfiguration.GALLERY_IMAGES_ID.replace(':galleryImageId',galleryImageId));
+   }
+
+
+   public updateNews(newsId,data:TheBinderyContent){
+    return super.put(
+      SystemConfiguration.NEWS_ID.replace(':newsId',newsId),
+      data,
+      SystemConfiguration.HTTP_OPTIONS
+    );
+   }
+
+   public updateEvent(eventId,data:TheBinderyContent){
+    return super.put(
+      SystemConfiguration.EVENTS_ID.replace(':eventId',eventId),
+      data,
+      SystemConfiguration.HTTP_OPTIONS
+    );
+   }
+
+   public updateGalleryImage(galleryImageId,data:TheBinderyContent){
+    return super.put(
+      SystemConfiguration.GALLERY_IMAGES_ID.replace(':galleryImageId',galleryImageId),
+      data,
+      SystemConfiguration.HTTP_OPTIONS
+    );
+   }
 }

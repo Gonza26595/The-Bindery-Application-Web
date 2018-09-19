@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
-import { GalleryImage } from '../../classes/galleryImage';
-import { ContentCreatorService } from '../../services/content-creator.service';
+import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
+import { GalleryImage } from '../../../classes/galleryImage';
+import { ContentCreatorService } from '../../../services/content-creator.service';
 
 @Component({
   selector: 'app-gallery-image-create',
@@ -14,6 +14,7 @@ export class GalleryImageCreateComponent implements OnInit {
   galleryImageCreateForm: FormGroup;
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
+  disableButtonSave: boolean = false;
 
 
 
@@ -47,6 +48,10 @@ export class GalleryImageCreateComponent implements OnInit {
     this._contentCreateService.saveGalleryImage(newGalleryImage).subscribe(
       data=>{
        this.successMessage = "La imagen fue creada exitosamente"
+       this.disableButtonSave = true;
+       setTimeout(() =>{
+         this.back();
+       },2000);
       },
       error=>{
 

@@ -1,9 +1,18 @@
+<main role="main" class="container">
 <app-status-message [successMessage]="successMessage"></app-status-message>
 <div>
     <div class="starter-template">
-        <h1 class="mt-4 mb-4">Create new image</h1>
+        <h1 class="mt-4 mb-4">Create new news</h1>
       </div>
-<form class="event-creation m-auto w-50" (keydown.enter)="$event.preventDefault()"[formGroup]="galleryImageCreateForm">
+<form class="event-creation m-auto" (keydown.enter)="$event.preventDefault()"[formGroup]="newsCreateForm">
+   <div class="row float-left dateAndSection">
+      <div class="col-6 form-group mb-4">
+          <input type="text" formControlName="section"  class="form-control" id="section" placeholder="Coloque la sección" autofocus>
+        </div>
+        <div class="col-6 form-group mb-4">
+            <input type="text" formControlName="newsDate"  class="form-control" id="news-date" placeholder="Coloque la fecha" autofocus>
+          </div>
+   </div>
    <div class="form-group mb-4">
       <input type="text" formControlName="title"  class="form-control" id="title" placeholder="Coloque el título" autofocus>
     </div>
@@ -18,8 +27,9 @@
           <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
         </div>
         <div class=" col-6 mt-3">
-            <button type="submit" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="saveNewGalleryImage()">Save</button>
+            <button type="submit"  [disabled]="disableButtonSave" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="saveNewNews()">Save</button>
           </div>
         </div>
   </form>
 </div>
+</main>

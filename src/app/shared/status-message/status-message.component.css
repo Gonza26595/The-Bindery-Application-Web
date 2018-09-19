@@ -11,6 +11,8 @@
                url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
 }
 
+
+
 ::ng-deep .ui-toast-top-right{
   top: 60px;
   width: 100%;

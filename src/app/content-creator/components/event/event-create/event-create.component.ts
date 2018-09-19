@@ -1,8 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '../../../../../node_modules/@angular/forms';
-import { Location } from '../../../../../node_modules/@angular/common';
-import { ContentCreatorService } from '../../services/content-creator.service';
-import { Event } from '../../classes/event';
+import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
+import { Location } from '../../../../../../node_modules/@angular/common';
+import { ContentCreatorService } from '../../../services/content-creator.service';
+import { Event } from '../../../classes/event';
 
 @Component({
   selector: 'app-event-create',
@@ -15,6 +15,7 @@ export class EventCreateComponent implements OnInit {
   eventCreateForm: FormGroup;
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
+  disableButtonSave: boolean = false;
 
   constructor(private _location:Location,private _contentCreateService:ContentCreatorService) {
 
@@ -50,6 +51,10 @@ export class EventCreateComponent implements OnInit {
     this._contentCreateService.saveEvent(newEvent).subscribe(
       data=>{
         this.successMessage= "El evento fue creado exitosamente"
+        this.disableButtonSave = true;
+        setTimeout(() =>{
+          this.back();
+        },2000);
       },
       error=>{
 
