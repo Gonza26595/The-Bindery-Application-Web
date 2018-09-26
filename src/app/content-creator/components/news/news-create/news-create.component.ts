@@ -15,7 +15,9 @@ export class NewsCreateComponent implements OnInit {
   newsCreateForm: FormGroup
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
+  display: boolean = false;
   disableButtonSave: boolean = false;
+  newsPosition:number = 0;
 
 
 
@@ -50,6 +52,9 @@ export class NewsCreateComponent implements OnInit {
       this.newsCreateForm.value.section
     )
 
+    newNews.position = this.newsPosition;
+
+
     return newNews
   }
 
@@ -57,22 +62,33 @@ export class NewsCreateComponent implements OnInit {
   public saveNewNews(){
     let newNews = this.createNewsInstance();
 
-    this._contentCreateService.saveNews(newNews).subscribe(
-      data=>{
-        this.successMessage = "La noticia fue creada exitosamente"
-        this.disableButtonSave = true;
-        setTimeout(() =>{
-          this.back();
-        },2000);
-      },
-      error=>{
+    console.log(newNews);
+    // this._contentCreateService.saveNews(newNews).subscribe(
+    //   data=>{
+    //     this.successMessage = "La noticia fue creada exitosamente"
+    //     this.disableButtonSave = true;
+    //     setTimeout(() =>{
+    //       this.back();
+    //     },2000);
+    //   },
+    //   error=>{
 
-      }
-    )
+    //   }
+    // )
   }
 
   public back(){
     this.goBack.emit(false);
+  }
+
+
+  getPosition(event){
+    this.display = event.dialog
+    this.newsPosition = event.position
+  }
+
+  showDialog() {
+    this.display = true;
   }
 
 }

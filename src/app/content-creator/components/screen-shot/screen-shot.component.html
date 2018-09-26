@@ -1,68 +1,76 @@
-<div class="news container-fluid mt-5 mb-5" style="filter: contrast(0.4); width: 100%;">
+<div class="news container-fluid" style=" width: 100%;">
   <div class="row pb-2 row-1-container">
-    <div class="col-xl-5 col-lg-5 col-md-5 pr-1 pl-0 news-1-container" style="height: 100%;background: #eeeeee;">
+    <div id="preview-1" class="preview col-xl-5 col-lg-5 col-md-5 pr-1 pl-0 news-1-container" style="height: 100%;background: #eeeeee;">
       <div class="position-relative  float-right" style="bottom: 80%">
         <h2 class="news-title position-relative p-4 text-center" style="margin-bottom: 30px; font-size: 1.2rem"></h2>
-        <span (click)="goToDetail(newsList[0].id)" class=" read-more float-right  p-1" style="margin-top: 120px;"></span>
+        <span class=" read-more float-right  p-1" style="margin-top: 120px;"></span>
       </div>
     </div>
+    <mat-checkbox id="checkbox-1" (change)="handlePreviewChecked($event,1)" style="position: fixed"></mat-checkbox>
     <div style="height: 100%;" class="row col-xl-4 col-lg-4 col-md-4 pl-1 row-2-container">
       <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-0 pr-2 pb-1">
-        <div class="w-100 h-100 float-right" style="background: #eeeeee">
+        <div  id="preview-2" class="preview w-100 h-100 float-right" style="background: #eeeeee;">
           <h2 style="font-size: 1.1rem" class="news-title p-2 mt-4"></h2>
-          <span (click)="goToDetail(newsList[1].id)" class="read-more float-right p-1 mt-4"></span>
+          <span  class="read-more float-right p-1 mt-4"></span>
         </div>
+        <mat-checkbox (change)="handlePreviewChecked($event,2)" style="position: fixed"></mat-checkbox>
       </div>
       <div style="height: 100%;" class="col-xl-12 col-lg-12 col-md-12 h-50 pl-0 pr-2">
-        <div class="w-100 h-100 float-right" style="background: #eeeeee">
+        <div id="preview-3" class="preview w-100 h-100 float-right" style="background: #eeeeee">
           <h2 style="font-size: 1.1rem; color: white" class="news-title p-2 mt-4"></h2>
           <span (click)="goToDetail()" class="read-more float-right p-1 mt-4"></span>
       </div>
+      <mat-checkbox (change)="handlePreviewChecked($event,3)" style="position: fixed"></mat-checkbox>
       </div>
     </div>
-    <div style="height: 100%;background: #eeeeee" class="col-xl-3 col-lg-3 col-md-3 p-0 news-4-container">
-      <div style="bottom: 80%;" class="position-relative float-right">
+    <div style="height: 100%;" class="col-xl-3 col-lg-3 col-md-3 p-0 news-4-container">
+      <div id="preview-4" style="bottom: 80%;background: #eeeeee;" class="preview w-100 h-100 float-right">
         <h2 class="news-title p-4 text-center" style="font-size: 1.2rem;"></h2>
         <span (click)="goToDetail()" class="read-more p-1 float-right" style="margin-top: 135px"></span>
       </div>
+      <mat-checkbox (change)="handlePreviewChecked($event,4)" style="position: fixed"></mat-checkbox>
     </div>
   </div>
   <div class="row  mb-1 row-3-container" >
-    <div  class="h-100 col-xl-3 col-lg-3 col-md-3 pl-0 pr-0 news-5-container" style="background: #eeeeee">
+    <div  id="preview-5"  class="preview h-100 col-xl-3 col-lg-3 col-md-3 pl-0 pr-0 news-5-container" style="background: #eeeeee">
       <div style="bottom: 80%;" class="position-relative float-right pl-5">
         <h2 class="news-title p-3" style="font-size: 1.2rem;"></h2>
         <span (click)="goToDetail()" class="read-more  p-1 float-right" style="margin-top: 59px"></span>
       </div>
      </div>
+     <mat-checkbox (change)="handlePreviewChecked($event,5)" style="position: fixed"></mat-checkbox>
      <div style="height: 100%;" class="col-xl-4 col-lg-4 col-md-4 row pl-0 row-4-container ">
       <div   class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0 pb-1 row-4-container-1">
-        <div class="float-left w-100 h-100  pl-2 position-relative" style="background: #eeeeee" >
+        <div id="preview-6" class="preview float-right w-100 h-100  pl-2 position-relative" style="background: #eeeeee" >
           <h2 style="font-size: 1.1rem;" class="mt-4 news-title"></h2>
           <span (click)="goToDetail()" class="read-more position-relative float-right p-1"></span>
         </div>
+        <mat-checkbox (change)="handlePreviewChecked($event,6)" style="position: fixed"></mat-checkbox>
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0 row-4-container-2">
-        <div class="float-right w-100 h-100  pl-2 position-relative" style="background: #eeeeee">
+        <div id="preview-7" class="preview float-right w-100 h-100  pl-2 position-relative" style="background: #eeeeee">
           <h2 style="font-size: 1.1rem;  color: white" class="news-title mt-4"></h2>
           <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1"></span>
         </div>
+        <mat-checkbox (change)="handlePreviewChecked($event,7)" style="position: fixed"></mat-checkbox>
       </div>
      </div>
      <div style="height: 100%;" class="col-xl-2 col-lg-2 col-md-2 pr-2 pl-2 what-are-you-bound-to-container">
-      <div class="h-100 pl-2 pr-2" style="background: #eeeeee;color: white;">
+      <div class="preview h-100 pl-2 pr-2" style="background: #eeeeee;color: white;">
         <h2  style="font-size: 1.5rem;" class="pt-4 what-are-you-bound-to-title text-uppercase"></h2>
         <p  style="font-size: 0.8rem;font-family: 'Roboto',sans-serif;"></p>
        </div>
       </div>
       <div style="height: 100%;" class="row col-xl-3 col-lg-3 col-md-3 p-0 row-5-container">
         <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0 pb-1">
-          <div class=" w-100 float-left h-100 " style="background: #eeeeee">
+          <div id="preview-8" class="preview w-100 float-right h-100 " style="background: #eeeeee">
             <h2 style="font-size: 1.0rem;" class="mt-4 pl-2 news-title"></h2>
             <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1" ></span>
           </div>
+          <mat-checkbox (change)="handlePreviewChecked($event,8)" style="position: fixed"></mat-checkbox>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0">
-           <div class="w-100 h-100 float-right  pl-2" style="background: #eeeeee">
+           <div class="preview w-100 h-100 float-right  pl-2" style="background: #eeeeee">
               <h2  style="font-size: 1.0rem; color: white" class="news-title mt-4"></h2>
               <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-2" ></span>
             </div>

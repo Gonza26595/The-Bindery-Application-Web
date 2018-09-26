@@ -1,5 +1,10 @@
 ::ng-deep .row{
     margin-left: 0px;
+
+}
+
+.preview{
+  filter: contrast(0.4)
 }
 
 

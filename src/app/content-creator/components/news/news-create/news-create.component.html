@@ -1,9 +1,16 @@
 <main role="main" class="container">
 <app-status-message [successMessage]="successMessage"></app-status-message>
 <div>
-    <div class="starter-template">
-        <h1 class="mt-4 mb-4">Create new news</h1>
-      </div>
+    <div class=" starter-template">
+        <div class="row">
+            <div class="col-10">
+                <h1 class="mt-4 mb-4">Create new news</h1>
+            </div>
+            <div class="col-2">
+                <button (click)="showDialog()" class="btn btn-xl btn-primary btn-block mt-5 mb-4">ubicacion</button>
+            </div>
+        </div>
+    </div>
 <form class="event-creation m-auto" (keydown.enter)="$event.preventDefault()"[formGroup]="newsCreateForm">
    <div class="row float-left dateAndSection">
       <div class="col-6 form-group mb-4">
@@ -27,9 +34,21 @@
           <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
         </div>
         <div class=" col-6 mt-3">
-            <button type="submit"  [disabled]="disableButtonSave" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="saveNewNews()">Save</button>
+            <button type="submit"  [disabled]="disableButtonSave || newsPosition == 0 || newsCreateForm.invalid " class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="saveNewNews()">Save</button>
           </div>
         </div>
   </form>
 </div>
+
+
+<p-dialog [(visible)]="display" [modal]="true"
+[dismissableMask]="true" [responsive]="true" [width]="1200" [minWidth]="200" [minY]="70"
+[maximizable]="true" [baseZIndex]="11074" >
+<app-screen-shot (sendPosition)="getPosition($event)"></app-screen-shot>
+</p-dialog>
+
+
+
+
+
 </main>

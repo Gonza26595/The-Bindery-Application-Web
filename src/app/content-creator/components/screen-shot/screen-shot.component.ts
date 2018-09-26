@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-screen-shot',
@@ -7,9 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScreenShotComponent implements OnInit {
 
+  position
+  @Output() sendPosition = new EventEmitter();
+
   constructor() { }
 
   ngOnInit() {
   }
 
-}
+
+  handlePreviewChecked(event, position){
+    this.position = position
+    if(event.checked){
+    document.getElementById('preview-' + position).style.filter = "contrast(1)"
+    setTimeout(() =>{
+      this.sendPosition.emit({position:this.position,dialog:false});
+    },500);
+
+    } else {
+      document.getElementById('preview-' + position).style.filter = "contrast(0.4)"
+    }
+    }
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
