@@ -1,0 +1,21 @@
+::ng-deep .row{
+    margin-left: 0px;
+}
+
+
+.row-1-container{
+  height: 350px;
+}
+
+.row-3-container{
+  height: 220px;
+}
+
+
+
+
+  .what-are-you-bound-to-title{
+    font-weight: 600;
+
+    font-family: 'Fira Sans Condensed',sans-serif;
+  }

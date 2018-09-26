@@ -2,6 +2,8 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { News } from '../../../classes/news';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-news-edit',
@@ -10,6 +12,7 @@ import { News } from '../../../classes/news';
 })
 export class NewsEditComponent implements OnInit {
 
+  maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   newsEditForm: FormGroup
   @Output() goBack = new EventEmitter<boolean>();
   @Input() newsId;
@@ -39,19 +42,35 @@ export class NewsEditComponent implements OnInit {
 
 
   public setNewsValues(news:News){
+
+    var dateISO = news.newsDate
+    var newsDate = moment(dateISO).utc().format('DD-MM-YYYY');
+
+
     this.newsEditForm.controls['title'].setValue(news.title);
     this.newsEditForm.controls['contentParagraph'].setValue(news.contentParagraph);
-    this.newsEditForm.controls['newsDate'].setValue(news.newsDate);
+    this.newsEditForm.controls['newsDate'].setValue(newsDate);
     this.newsEditForm.controls['author'].setValue(news.author);
     this.newsEditForm.controls['section'].setValue(news.section);
   }
 
 
   public createNewsInstance():News{
+
+    var newsDate
+      if(this.newsEditForm.value.newsDate.includes('-')){
+        let array = this.newsEditForm.value.newsDate.split('-');
+        newsDate = new Date(array[2],array[1]-1,array[0]).toISOString().substring(0,10);
+      } else {
+        let array = this.newsEditForm.value.newsDate.split('/');
+        newsDate = new Date(array[2],array[1]-1,array[0]).toISOString().substring(0,10);
+      }
+
+
     let newsUpdated = new News(
       this.newsEditForm.value.title,
       this.newsEditForm.value.contentParagraph,
-      this.newsEditForm.value.newsDate,
+      newsDate,
       this.newsEditForm.value.author,
       this.newsEditForm.value.section
     )

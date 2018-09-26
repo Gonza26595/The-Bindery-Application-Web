@@ -6,13 +6,15 @@ import { AgendaGridComponent } from './agenda-grid/agenda-grid.component';
 import { GalleryGridComponent } from './gallery-grid/gallery-grid.component';
 import { MainRoutingModule } from './main-routing.module';
 import {DialogModule} from 'primeng/dialog';
+import {TextMaskModule} from 'angular2-text-mask';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     MainRoutingModule,
-    DialogModule
+    DialogModule,
+    TextMaskModule
   ],
   exports: [
   ],

@@ -19,7 +19,8 @@ export class AgendaGridComponent implements OnInit {
   ngOnInit() {
     this._contentCreatorService.getEvents().subscribe(
       data=>{
-        this.eventsList=data},
+        this.eventsList=data
+      },
       error=>{}
     )
   }
@@ -29,6 +30,7 @@ export class AgendaGridComponent implements OnInit {
 
     this._contentCreatorService.getEventById(id).subscribe(
       data => {
+
         this.setDialogValues(data);
       },
       error => {

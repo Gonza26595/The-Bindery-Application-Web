@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { News } from '../../../classes/news';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-news-create',
@@ -10,7 +11,7 @@ import { News } from '../../../classes/news';
 })
 export class NewsCreateComponent implements OnInit {
 
-
+  maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   newsCreateForm: FormGroup
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
@@ -36,10 +37,15 @@ export class NewsCreateComponent implements OnInit {
 
 
   public createNewsInstance():News{
+
+
+    let array = this.newsCreateForm.value.newsDate.split('/');
+    let newsDate = new Date(array[2],array[1]-1,array[0]).toISOString().substring(0,10);
+
     let newNews = new News(
       this.newsCreateForm.value.title,
       this.newsCreateForm.value.contentParagraph,
-      this.newsCreateForm.value.newsDate,
+      newsDate,
       this.newsCreateForm.value.author,
       this.newsCreateForm.value.section
     )

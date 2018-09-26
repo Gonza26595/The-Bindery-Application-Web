@@ -13,12 +13,15 @@ import { GalleryImageListComponent } from './components/gallery-images/gallery-i
 import { GalleryImageEditComponent } from './components/gallery-images/gallery-image-edit/gallery-image-edit.component';
 import { NewsEditComponent } from './components/news/news-edit/news-edit.component';
 import { EventEditComponent } from './components/event/event-edit/event-edit.component';
+import {TextMaskModule} from 'angular2-text-mask';
+import { ScreenShotComponent } from './components/screen-shot/screen-shot.component';
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     ContentCreatorRoutingModule,
     ReactiveFormsModule,
+    TextMaskModule
   ],
   declarations: [
     ContentCreateComponent,
@@ -30,7 +33,8 @@ import { EventEditComponent } from './components/event/event-edit/event-edit.com
     GalleryImageListComponent,
     GalleryImageEditComponent,
     NewsEditComponent,
-    EventEditComponent
+    EventEditComponent,
+    ScreenShotComponent
   ]
 })
 export class ContentCreatorModule { }

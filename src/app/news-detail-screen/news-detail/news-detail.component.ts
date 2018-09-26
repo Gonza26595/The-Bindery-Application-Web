@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { News } from '../../content-creator/classes/news';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-news-detail',
@@ -28,8 +29,13 @@ export class NewsDetailComponent implements OnInit {
 
 
   public setNewsDetail(news:News){
+
+    var dateISO = news.newsDate
+    var newsDate = moment(dateISO).utc().format('MMM Do YY');
+
+
     document.querySelector('.section').textContent = news.section;
-    document.querySelector('.date').textContent = news.newsDate;
+    document.querySelector('.date').textContent = newsDate;
     document.querySelector('.title').textContent = news.title;
     document.querySelector('#author').textContent = news.author;
     document.querySelector('#contentParagraph').textContent = news.contentParagraph;
