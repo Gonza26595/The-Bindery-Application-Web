@@ -17,6 +17,9 @@ export class NewsEditComponent implements OnInit {
   @Output() goBack = new EventEmitter<boolean>();
   @Input() newsId;
   successMessage;
+  display:boolean = false;
+  newsPosition: number;
+  news;
 
 
 
@@ -35,7 +38,7 @@ export class NewsEditComponent implements OnInit {
 
    ngOnInit() {
     this._contentCreateService.getNewsById(this.newsId).subscribe(
-      data=>{this.setNewsValues(data)},
+      data=>{this.setNewsValues(data); },
       error=>{}
     );
   }
@@ -52,6 +55,7 @@ export class NewsEditComponent implements OnInit {
     this.newsEditForm.controls['newsDate'].setValue(newsDate);
     this.newsEditForm.controls['author'].setValue(news.author);
     this.newsEditForm.controls['section'].setValue(news.section);
+    this.newsPosition = news.position
   }
 
 
@@ -72,8 +76,10 @@ export class NewsEditComponent implements OnInit {
       this.newsEditForm.value.contentParagraph,
       newsDate,
       this.newsEditForm.value.author,
-      this.newsEditForm.value.section
+      this.newsEditForm.value.section,
+      this.newsPosition
     )
+
 
     return newsUpdated
   }
@@ -81,7 +87,7 @@ export class NewsEditComponent implements OnInit {
 
   public updateNews(){
     let newsUpdated = this.createNewsInstance();
-
+    console.log(newsUpdated);
     this._contentCreateService.updateNews(this.newsId,newsUpdated).subscribe(
       data=>{
         this.successMessage = new String('La noticia ha sido actualizada');
@@ -97,6 +103,17 @@ export class NewsEditComponent implements OnInit {
 
   public back(){
     this.goBack.emit(false);
+  }
+
+
+  showDialog() {
+    this.display = true;
+    this.news = 'news'
+  }
+
+  getPosition(event){
+    this.display = event.dialog
+    this.newsPosition = event.position
   }
 
 }

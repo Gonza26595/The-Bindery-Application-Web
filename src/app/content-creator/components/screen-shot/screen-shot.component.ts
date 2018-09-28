@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter, Input } from '@angular/core';
 
 
 @Component({
@@ -6,15 +6,23 @@ import { Component, OnInit, OnChanges, Output, EventEmitter } from '@angular/cor
   templateUrl: './screen-shot.component.html',
   styleUrls: ['./screen-shot.component.css']
 })
-export class ScreenShotComponent implements OnInit {
+export class ScreenShotComponent implements OnInit,OnChanges {
 
-  position
+  @Input() dialogSelected
+  @Input() position
   @Output() sendPosition = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
+
   }
+
+  ngOnChanges(){
+   console.log(this.dialogSelected);
+  }
+
+
 
 
   handlePreviewChecked(event, position){
@@ -29,6 +37,33 @@ export class ScreenShotComponent implements OnInit {
       document.getElementById('preview-' + position).style.filter = "contrast(0.4)"
     }
     }
+
+
+    handleEventPreviewChecked(event, position){
+      this.position = position
+      if(event.checked){
+      document.getElementById('event-preview-' + position).style.filter = "contrast(1)"
+      setTimeout(() =>{
+        this.sendPosition.emit({position:this.position,dialog:false});
+      },500);
+
+      } else {
+        document.getElementById('event-preview-' + position).style.filter = "contrast(0.4)"
+      }
+      }
+
+      handleImagePreviewChecked(event, position){
+        this.position = position
+        if(event.checked){
+        document.getElementById('image-preview-' + position).style.filter = "contrast(1)"
+        setTimeout(() =>{
+          this.sendPosition.emit({position:this.position,dialog:false});
+        },500);
+
+        } else {
+          document.getElementById('image-preview-' + position).style.filter = "contrast(0.4)"
+        }
+        }
 
 
 

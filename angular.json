@@ -26,7 +26,9 @@
               "src/styles.css"
 
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/ckeditor_4.10.1_full_easyimage/ckeditor"
+            ]
           },
           "configurations": {
             "production": {

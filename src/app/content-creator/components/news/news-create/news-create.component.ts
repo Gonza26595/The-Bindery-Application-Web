@@ -11,6 +11,7 @@ import * as moment from 'moment';
 })
 export class NewsCreateComponent implements OnInit {
 
+
   maskDate = [/\d/, /\d/, '/', /\d/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   newsCreateForm: FormGroup
   @Output() goBack = new EventEmitter<boolean>();
@@ -18,6 +19,7 @@ export class NewsCreateComponent implements OnInit {
   display: boolean = false;
   disableButtonSave: boolean = false;
   newsPosition:number = 0;
+  news;
 
 
 
@@ -49,10 +51,10 @@ export class NewsCreateComponent implements OnInit {
       this.newsCreateForm.value.contentParagraph,
       newsDate,
       this.newsCreateForm.value.author,
-      this.newsCreateForm.value.section
+      this.newsCreateForm.value.section,
+      this.newsPosition
     )
 
-    newNews.position = this.newsPosition;
 
 
     return newNews
@@ -63,18 +65,18 @@ export class NewsCreateComponent implements OnInit {
     let newNews = this.createNewsInstance();
 
     console.log(newNews);
-    // this._contentCreateService.saveNews(newNews).subscribe(
-    //   data=>{
-    //     this.successMessage = "La noticia fue creada exitosamente"
-    //     this.disableButtonSave = true;
-    //     setTimeout(() =>{
-    //       this.back();
-    //     },2000);
-    //   },
-    //   error=>{
+    this._contentCreateService.saveNews(newNews).subscribe(
+      data=>{
+        this.successMessage = "La noticia fue creada exitosamente"
+        this.disableButtonSave = true;
+        setTimeout(() =>{
+          this.back();
+        },2000);
+      },
+      error=>{
 
-    //   }
-    // )
+      }
+    )
   }
 
   public back(){
@@ -89,6 +91,7 @@ export class NewsCreateComponent implements OnInit {
 
   showDialog() {
     this.display = true;
+    this.news = 'news'
   }
 
 }

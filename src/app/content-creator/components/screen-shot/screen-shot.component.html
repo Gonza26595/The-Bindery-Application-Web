@@ -1,4 +1,4 @@
-<div class="news container-fluid" style=" width: 100%;">
+<div *ngIf="dialogSelected == 'news'" class="news container-fluid" style=" width: 100%;">
   <div class="row pb-2 row-1-container">
     <div id="preview-1" class="preview col-xl-5 col-lg-5 col-md-5 pr-1 pl-0 news-1-container" style="height: 100%;background: #eeeeee;">
       <div class="position-relative  float-right" style="bottom: 80%">
@@ -6,21 +6,21 @@
         <span class=" read-more float-right  p-1" style="margin-top: 120px;"></span>
       </div>
     </div>
-    <mat-checkbox id="checkbox-1" (change)="handlePreviewChecked($event,1)" style="position: fixed"></mat-checkbox>
+    <mat-checkbox id="checkbox-1" [checked]="position == 1" (change)="handlePreviewChecked($event,1)" style="position: fixed"></mat-checkbox>
     <div style="height: 100%;" class="row col-xl-4 col-lg-4 col-md-4 pl-1 row-2-container">
       <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-0 pr-2 pb-1">
-        <div  id="preview-2" class="preview w-100 h-100 float-right" style="background: #eeeeee;">
+        <div id="preview-2" class="preview w-100 h-100 float-right" style="background: #eeeeee;">
           <h2 style="font-size: 1.1rem" class="news-title p-2 mt-4"></h2>
-          <span  class="read-more float-right p-1 mt-4"></span>
+          <span class="read-more float-right p-1 mt-4"></span>
         </div>
-        <mat-checkbox (change)="handlePreviewChecked($event,2)" style="position: fixed"></mat-checkbox>
+        <mat-checkbox [checked]="position == 2" (change)="handlePreviewChecked($event,2)" style="position: fixed"></mat-checkbox>
       </div>
       <div style="height: 100%;" class="col-xl-12 col-lg-12 col-md-12 h-50 pl-0 pr-2">
         <div id="preview-3" class="preview w-100 h-100 float-right" style="background: #eeeeee">
           <h2 style="font-size: 1.1rem; color: white" class="news-title p-2 mt-4"></h2>
           <span (click)="goToDetail()" class="read-more float-right p-1 mt-4"></span>
-      </div>
-      <mat-checkbox (change)="handlePreviewChecked($event,3)" style="position: fixed"></mat-checkbox>
+        </div>
+        <mat-checkbox [checked]="position == 3" (change)="handlePreviewChecked($event,3)" style="position: fixed"></mat-checkbox>
       </div>
     </div>
     <div style="height: 100%;" class="col-xl-3 col-lg-3 col-md-3 p-0 news-4-container">
@@ -28,55 +28,114 @@
         <h2 class="news-title p-4 text-center" style="font-size: 1.2rem;"></h2>
         <span (click)="goToDetail()" class="read-more p-1 float-right" style="margin-top: 135px"></span>
       </div>
-      <mat-checkbox (change)="handlePreviewChecked($event,4)" style="position: fixed"></mat-checkbox>
+      <mat-checkbox [checked]="position == 4" (change)="handlePreviewChecked($event,4)" style="position: fixed"></mat-checkbox>
     </div>
   </div>
-  <div class="row  mb-1 row-3-container" >
-    <div  id="preview-5"  class="preview h-100 col-xl-3 col-lg-3 col-md-3 pl-0 pr-0 news-5-container" style="background: #eeeeee">
+  <div class="row  mb-1 row-3-container">
+    <div id="preview-5" class="preview h-100 col-xl-3 col-lg-3 col-md-3 pl-0 pr-0 news-5-container" style="background: #eeeeee">
       <div style="bottom: 80%;" class="position-relative float-right pl-5">
         <h2 class="news-title p-3" style="font-size: 1.2rem;"></h2>
         <span (click)="goToDetail()" class="read-more  p-1 float-right" style="margin-top: 59px"></span>
       </div>
-     </div>
-     <mat-checkbox (change)="handlePreviewChecked($event,5)" style="position: fixed"></mat-checkbox>
-     <div style="height: 100%;" class="col-xl-4 col-lg-4 col-md-4 row pl-0 row-4-container ">
-      <div   class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0 pb-1 row-4-container-1">
-        <div id="preview-6" class="preview float-right w-100 h-100  pl-2 position-relative" style="background: #eeeeee" >
+    </div>
+    <mat-checkbox [checked]="position == 5" (change)="handlePreviewChecked($event,5)" style="position: fixed"></mat-checkbox>
+    <div style="height: 100%;" class="col-xl-4 col-lg-4 col-md-4 row pl-0 row-4-container ">
+      <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0 pb-1 row-4-container-1">
+        <div id="preview-6" class="preview float-right w-100 h-100  pl-2 position-relative" style="background: #eeeeee">
           <h2 style="font-size: 1.1rem;" class="mt-4 news-title"></h2>
           <span (click)="goToDetail()" class="read-more position-relative float-right p-1"></span>
         </div>
-        <mat-checkbox (change)="handlePreviewChecked($event,6)" style="position: fixed"></mat-checkbox>
+        <mat-checkbox [checked]="position == 6" (change)="handlePreviewChecked($event,6)" style="position: fixed"></mat-checkbox>
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 h-50 pl-2 pr-0 row-4-container-2">
         <div id="preview-7" class="preview float-right w-100 h-100  pl-2 position-relative" style="background: #eeeeee">
           <h2 style="font-size: 1.1rem;  color: white" class="news-title mt-4"></h2>
           <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1"></span>
         </div>
-        <mat-checkbox (change)="handlePreviewChecked($event,7)" style="position: fixed"></mat-checkbox>
+        <mat-checkbox [checked]="position == 7" (change)="handlePreviewChecked($event,7)" style="position: fixed"></mat-checkbox>
       </div>
-     </div>
-     <div style="height: 100%;" class="col-xl-2 col-lg-2 col-md-2 pr-2 pl-2 what-are-you-bound-to-container">
+    </div>
+    <div style="height: 100%;" class="col-xl-2 col-lg-2 col-md-2 pr-2 pl-2 what-are-you-bound-to-container">
       <div class="preview h-100 pl-2 pr-2" style="background: #eeeeee;color: white;">
-        <h2  style="font-size: 1.5rem;" class="pt-4 what-are-you-bound-to-title text-uppercase"></h2>
-        <p  style="font-size: 0.8rem;font-family: 'Roboto',sans-serif;"></p>
-       </div>
+        <h2 style="font-size: 1.5rem;" class="pt-4 what-are-you-bound-to-title text-uppercase"></h2>
+        <p style="font-size: 0.8rem;font-family: 'Roboto',sans-serif;"></p>
       </div>
-      <div style="height: 100%;" class="row col-xl-3 col-lg-3 col-md-3 p-0 row-5-container">
-        <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0 pb-1">
-          <div id="preview-8" class="preview w-100 float-right h-100 " style="background: #eeeeee">
-            <h2 style="font-size: 1.0rem;" class="mt-4 pl-2 news-title"></h2>
-            <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1" ></span>
-          </div>
-          <mat-checkbox (change)="handlePreviewChecked($event,8)" style="position: fixed"></mat-checkbox>
+    </div>
+    <div style="height: 100%;" class="row col-xl-3 col-lg-3 col-md-3 p-0 row-5-container">
+      <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0 pb-1">
+        <div id="preview-8" class="preview w-100 float-right h-100 " style="background: #eeeeee">
+          <h2 style="font-size: 1.0rem;" class="mt-4 pl-2 news-title"></h2>
+          <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-1"></span>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0">
-           <div class="preview w-100 h-100 float-right  pl-2" style="background: #eeeeee">
-              <h2  style="font-size: 1.0rem; color: white" class="news-title mt-4"></h2>
-              <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-2" ></span>
-            </div>
+        <mat-checkbox [checked]="position == 8" (change)="handlePreviewChecked($event,8)" style="position: fixed"></mat-checkbox>
+      </div>
+      <div class="col-xl-12 col-lg-12 col-md-12 h-50 p-0">
+        <div class="preview w-100 h-100 float-right  pl-2" style="background: #eeeeee">
+          <h2 style="font-size: 1.0rem; color: white" class="news-title mt-4"></h2>
+          <span (click)="goToDetail()" class="read-more position-relative float-right p-1 mt-2"></span>
         </div>
-       </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<div *ngIf="dialogSelected == 'event'">
+  <div class="p-5 grid agenda-content">
+    <div class="w-100 col-6 d-inline-block">
+      <div id="event-preview-1" style="background: #eeeeee;height: 100px;" class="event-preview w-100 m-0">
+        <mat-checkbox id="event-checkbox-1" [checked]="position == 1" (change)="handleEventPreviewChecked($event,1)" style="position: fixed"></mat-checkbox>
+      </div>
+      <div class="event-preview text-center position-relative mt-3" style="width:40%;margin-left: 30%;background: #eeeeee;height: 150px;">
+      </div>
+    </div>
+    <div class="border-left border-white w-100 col-6 float-right">
+      <div>
+        <div id="event-preview-2" style="background: #eeeeee;height: 100px;" class="event-preview w-10">
+          <h1 class="w-100">
+          </h1>
+          <mat-checkbox id="event-checkbox-2" [checked]="position == 2" (change)="handleEventPreviewChecked($event,2)" style="position: fixed"></mat-checkbox>
+        </div>
+      </div>
+      <div id="event-preview-3" style="background: #eeeeee;height: 100px;" class="event-preview w-100 mt-5">
+        <h1 class="w-100">
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="dialogSelected == 'gallery-image'">
+  <div class="mb-1" style="height: 530px">
+    <div style="height: 100%;" class="row h-50">
+      <div class="col-3 pl-0 pr-1">
+        <div id="image-preview-1" class="gallery-preview" style="height: 100%;background: #eeeeee;">
+          <mat-checkbox id="image-checkbox-1" [checked]="position == 1" (change)="handleImagePreviewChecked($event,1)" style="position: fixed"></mat-checkbox>
+        </div>
+      </div>
+      <div class="col-3 pl-0 pr-1">
+        <div id="image-preview-2" class="gallery-preview" style="height: 100%;background: #eeeeee;">
+          <mat-checkbox id="image-checkbox-2" [checked]="position == 2" (change)="handleImagePreviewChecked($event,2)" style="position: fixed"></mat-checkbox>
+        </div>
+      </div>
+      <div class="col-6 pl-0">
+        <div id="image-preview-3" class="gallery-preview" style="height: 100%;background: #eeeeee;">
+          <mat-checkbox id="image-checkbox-3" [checked]="position == 3" (change)="handleImagePreviewChecked($event,3)" style="position: fixed"></mat-checkbox>
+        </div>
+      </div>
+    </div>
+    <div style="height: 100%;" class="row h-50">
+      <div class="col-6 pl-0 pt-1 pr-1">
+        <div id="image-preview-4" class="gallery-preview" style="height: 100%;background: #eeeeee;">
+          <mat-checkbox id="image-checkbox-4" [checked]="position == 4" (change)="handleImagePreviewChecked($event,4)" style="position: fixed"></mat-checkbox>
+        </div>
+      </div>
+      <div class="col-6 pt-1 pl-0">
+        <div id="image-preview-5" class="gallery-preview" style="height: 100%;background: #eeeeee;">
+          <mat-checkbox id="image-checkbox-5" [checked]="position == 5" (change)="handleImagePreviewChecked($event,5)" style="position: fixed"></mat-checkbox>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 

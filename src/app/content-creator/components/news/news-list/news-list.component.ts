@@ -16,7 +16,6 @@ export class NewsListComponent implements OnInit {
   ngOnInit() {
     this._contentCreatorService.getNews().subscribe(
       data=>{
-        console.log(data);
        this.newsList = data;
       },
        error=>{

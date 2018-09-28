@@ -17,6 +17,8 @@ import {TextMaskModule} from 'angular2-text-mask';
 import {DialogModule} from 'primeng/dialog';
 import { ScreenShotComponent } from './components/screen-shot/screen-shot.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { CKEditorModule } from 'ng2-ckeditor';
+
 
 @NgModule({
   imports: [
@@ -27,7 +29,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     TextMaskModule,
     DialogModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    CKEditorModule
+
   ],
   declarations: [
     ContentCreateComponent,

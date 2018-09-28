@@ -5,10 +5,10 @@ export class News extends TheBinderyContent {
   newsDate:string;
   author:string;
   section:string;
-  position:number;
 
-  constructor(title:string,contentParagraph:string,newsDate:string,author:string,section:string){
-    super(title,contentParagraph)
+
+  constructor(title:string,contentParagraph:string,newsDate:string,author:string,section:string,position:number){
+    super(title,contentParagraph,position)
     this.newsDate = newsDate;
     this.author = author;
     this.section = section;

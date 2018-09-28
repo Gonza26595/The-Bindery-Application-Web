@@ -12,10 +12,13 @@ import { Event } from '../../../classes/event';
 export class EventCreateComponent implements OnInit {
 
 
+  display:boolean;
   eventCreateForm: FormGroup;
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
   disableButtonSave: boolean = false;
+  event;
+  eventPosition;
 
   constructor(private _location:Location,private _contentCreateService:ContentCreatorService) {
 
@@ -38,7 +41,8 @@ export class EventCreateComponent implements OnInit {
   public createEventInstance():Event{
     let newEvent = new Event(
       this.eventCreateForm.value.title,
-      this.eventCreateForm.value.contentParagraph
+      this.eventCreateForm.value.contentParagraph,
+      this.eventPosition
     )
 
     return newEvent
@@ -47,7 +51,6 @@ export class EventCreateComponent implements OnInit {
 
   public saveNewEvent(){
     let newEvent = this.createEventInstance();
-
     this._contentCreateService.saveEvent(newEvent).subscribe(
       data=>{
         this.successMessage= "El evento fue creado exitosamente"
@@ -60,5 +63,16 @@ export class EventCreateComponent implements OnInit {
 
       }
     )
+  }
+
+
+  showDialog() {
+    this.display = true;
+    this.event = 'event'
+  }
+
+  getPosition(event){
+    this.display = event.dialog
+    this.eventPosition = event.position
   }
 }

@@ -16,7 +16,6 @@ export class GalleryImageListComponent implements OnInit {
   ngOnInit() {
     this._contentCreatorService.getImages().subscribe(
       data=>{
-        console.log(data);
        this.galleryImagesList = data;
       },
        error=>{

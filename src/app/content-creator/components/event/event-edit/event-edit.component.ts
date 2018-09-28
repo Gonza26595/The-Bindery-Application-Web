@@ -14,6 +14,9 @@ export class EventEditComponent implements OnInit {
   @Output() goBack = new EventEmitter<boolean>();
   @Input() eventId;
   successMessage;
+  display:boolean;
+  event;
+  eventPosition;
 
   constructor(private _contentCreateService:ContentCreatorService) {
 
@@ -46,7 +49,8 @@ export class EventEditComponent implements OnInit {
   public createEventInstance():Event{
     let eventUpdated = new Event(
       this.eventEditForm.value.title,
-      this.eventEditForm.value.contentParagraph
+      this.eventEditForm.value.contentParagraph,
+      this.eventPosition
     )
 
     return eventUpdated
@@ -68,6 +72,18 @@ export class EventEditComponent implements OnInit {
       }
     )
   }
+
+
+  showDialog() {
+    this.display = true;
+    this.event = 'event';
+  }
+
+  getPosition(event){
+    this.display = event.dialog
+    this.eventPosition = event.position
+  }
+
 }
 
 

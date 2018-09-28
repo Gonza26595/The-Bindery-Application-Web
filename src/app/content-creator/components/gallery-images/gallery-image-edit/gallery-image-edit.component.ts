@@ -14,6 +14,9 @@ export class GalleryImageEditComponent implements OnInit {
   @Output() goBack = new EventEmitter<boolean>();
   @Input() galleryImageId;
   successMessage;
+  display: boolean = false;
+  galleryImage;
+  imagePosition;
 
 
 
@@ -45,7 +48,8 @@ export class GalleryImageEditComponent implements OnInit {
     let galleryImageUpdated = new GalleryImage(
       this.galleryImageEditForm.value.title,
       this.galleryImageEditForm.value.contentParagraph,
-      this.galleryImageEditForm.value.author
+      this.galleryImageEditForm.value.author,
+      this.imagePosition
     )
 
     return galleryImageUpdated
@@ -70,6 +74,16 @@ export class GalleryImageEditComponent implements OnInit {
 
   public back(){
     this.goBack.emit(false);
+  }
+
+  showDialog() {
+    this.display = true;
+    this.galleryImage = 'gallery-image'
+  }
+
+  getPosition(event){
+    this.display = event.dialog
+    this.imagePosition = event.position
   }
 
 }

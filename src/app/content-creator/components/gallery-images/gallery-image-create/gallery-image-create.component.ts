@@ -15,6 +15,9 @@ export class GalleryImageCreateComponent implements OnInit {
   @Output() goBack = new EventEmitter<boolean>();
   successMessage;
   disableButtonSave: boolean = false;
+  display: boolean = false;
+  galleryImage;
+  imagePosition;
 
 
 
@@ -35,7 +38,8 @@ export class GalleryImageCreateComponent implements OnInit {
     let newGalleryImage = new GalleryImage(
       this.galleryImageCreateForm.value.title,
       this.galleryImageCreateForm.value.contentParagraph,
-      this.galleryImageCreateForm.value.author
+      this.galleryImageCreateForm.value.author,
+      this.imagePosition
     )
 
     return newGalleryImage
@@ -61,6 +65,16 @@ export class GalleryImageCreateComponent implements OnInit {
 
   public back(){
     this.goBack.emit(false);
+  }
+
+  showDialog() {
+    this.display = true;
+    this.galleryImage = 'gallery-image'
+  }
+
+  getPosition(event){
+    this.display = event.dialog
+    this.imagePosition = event.position
   }
 
 }

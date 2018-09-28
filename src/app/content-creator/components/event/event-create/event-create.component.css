@@ -1,4 +1,6 @@
-.event-creation{
+::ng-deep .ui-dialog {
+  position: fixed;
+  z-index: 1000 !important; /* TODO: primeng: temporary fix for 5.2.1 bug #5271 */
 
 }
 

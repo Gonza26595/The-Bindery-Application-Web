@@ -38,7 +38,7 @@ export class NewsDetailComponent implements OnInit {
     document.querySelector('.date').textContent = newsDate;
     document.querySelector('.title').textContent = news.title;
     document.querySelector('#author').textContent = news.author;
-    document.querySelector('#contentParagraph').textContent = news.contentParagraph;
+    document.querySelector('#contentParagraph').innerHTML = news.contentParagraph;
 
   }
 

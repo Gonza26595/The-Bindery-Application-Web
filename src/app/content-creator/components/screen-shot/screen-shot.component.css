@@ -3,7 +3,7 @@
 
 }
 
-.preview{
+.preview, .event-preview, .gallery-preview{
   filter: contrast(0.4)
 }
 
