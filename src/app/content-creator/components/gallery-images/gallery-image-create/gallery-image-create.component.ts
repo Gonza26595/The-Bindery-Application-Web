@@ -17,7 +17,7 @@ export class GalleryImageCreateComponent implements OnInit {
   disableButtonSave: boolean = false;
   display: boolean = false;
   galleryImage;
-  imagePosition;
+  imagePosition: number = 0;
 
 
 

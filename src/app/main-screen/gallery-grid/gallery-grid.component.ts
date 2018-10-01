@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
 
 @Component({
@@ -8,8 +8,12 @@ import { ContentCreatorService } from '../../content-creator/services/content-cr
 })
 export class GalleryGridComponent implements OnInit {
 
-  display: boolean = false;
+  display = false;
   imagesList = new Array();
+  imageTitle;
+  imageContentParagraph;
+  imageAuthor;
+  imageWidth;
 
   constructor(private _contentCreatorService:ContentCreatorService) { }
 
@@ -17,14 +21,14 @@ export class GalleryGridComponent implements OnInit {
     this._contentCreatorService.getImages().subscribe(
       data=>{
         this.imagesList = data;
+        console.log(this.imagesList);
+
       },
       error =>{
 
       }
     )
   }
-
-  
 
 
 
@@ -34,11 +38,27 @@ public flip() {
 };
 
 
-public showDialog(position){
+public showDialog(position,imageWidth){
+
   this.display = true;
-  let event = this.imagesList.find(i => i.position == position);
-  document.querySelector('#dialogTitle').textContent = event.title;
-  document.querySelector('#dialogContentParagraph').textContent = event.contentParagraph; 
+  let image = this.imagesList.find(i => i.position == position);
+  this.imageTitle = image.title;
+  this.imageContentParagraph = image.contentParagraph;
+  this.imageAuthor = image.author;
+  this.imageWidth = imageWidth
+
+ setTimeout(function(){
+   console.log(document.querySelector('#dialog-image').nodeValue)
+ },2000)
+
+
 }
+
+
+
+
+
+
+
 
 }

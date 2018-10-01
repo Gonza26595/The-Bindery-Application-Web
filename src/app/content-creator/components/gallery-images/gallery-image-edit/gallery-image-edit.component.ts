@@ -42,6 +42,7 @@ export class GalleryImageEditComponent implements OnInit {
     this.galleryImageEditForm.controls['title'].setValue(galleryImage.title);
     this.galleryImageEditForm.controls['contentParagraph'].setValue(galleryImage.contentParagraph);
     this.galleryImageEditForm.controls['author'].setValue(galleryImage.author);
+    this.imagePosition = galleryImage.position;
   }
 
   public createGalleryImageInstance():GalleryImage{

@@ -108,7 +108,7 @@
 
    .news-5-container div{
     width: 50%!important;
-    float: right;
+    float: left!important;
     bottom: 0%!important;
     background: #eeeeee!important;
     height: 100%!important;
@@ -138,7 +138,15 @@
 
    .row-4-container div {
      padding-left: 0!important;
+    float: right!important;
+   }
 
+   .row-4-container-1 img {
+     float: left!important;
+   }
+
+   .row-4-container-2 img {
+     float: right!important
    }
 
    .news-4-container div h2{
@@ -156,6 +164,11 @@
    .row-5-container{
      height: 350px!important;
      padding-top: 5px!important;
+   }
+
+   #row-5-container-2 img{
+     float: left!important;
+
    }
 
   }

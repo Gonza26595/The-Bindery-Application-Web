@@ -18,7 +18,7 @@ export class EventCreateComponent implements OnInit {
   successMessage;
   disableButtonSave: boolean = false;
   event;
-  eventPosition;
+  eventPosition: number = 0;
 
   constructor(private _location:Location,private _contentCreateService:ContentCreatorService) {
 

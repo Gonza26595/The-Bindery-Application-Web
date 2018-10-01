@@ -4,14 +4,16 @@
    </div>
    <table class="table">
      <thead>
-       <tr>
-         <th scope="col">Name</th>
-         <th scope="col"></th>
-       </tr>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Position</th>
+          <th scope="col"></th>
+        </tr>
      </thead>
      <tbody>
        <tr *ngFor="let event of eventsList">
          <td>{{event.title}}</td>
+         <td>{{event.position}}</td>
          <td>
            <button class="float-right" (click)="eventEdit(event.id)">Edit</button>
          </td>

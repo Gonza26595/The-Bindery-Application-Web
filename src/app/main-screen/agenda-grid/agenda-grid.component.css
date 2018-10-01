@@ -1,3 +1,7 @@
+.agenda-container{
+    height: 440px;
+}
+
 .agenda-title{height:15%;}
 .agenda-title h1 {
     background: linear-gradient(to right, rgba(23,221,195,1) 0%, rgba(25,49,120,1) 86%, rgba(25,49,120,1) 100%);
@@ -25,20 +29,65 @@
 
   }
 
+  .modalContent{
+    height: 550px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .modalContent img {
+    height: 220px;
+    width: 95%;
+  }
+
   .modalContent h3{
     font-family: 'Raleway', sans-serif;
     color: white;
+    font-size: 1.5rem;
   }
 
   .modalContent p {
       color: white;
       font-family: 'Roboto', sans-serif;
+      font-size: 0.8rem;
   }
+
+  .agenda-content img {
+    width: 35%;
+}
+
+
 
 
 
 
   @media only screen and (min-width: 300px) and (max-width:576px){
+
+    .agenda-container{
+        height: 400px;
+    }
+
+    .modalContent{
+        height: 460px;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+
+    .modalContent img{
+        height: 175px;
+    }
+
+    .modalContent p {
+       font-size: 0.7rem;
+    }
+
+    .modalContent h3 {
+        font-size: 1.0rem;
+    }
 
     .agenda-title{
         width: 100%!important;
@@ -48,10 +97,18 @@
         padding: 1.5rem!important;
     }
 
+    .agenda-content img {
+        width: 85%;
+    }
+
      .agenda-content h1{
-         font-size: 1rem!important;
+         font-size: 1.1rem!important;
      }
 
+  ::ng-deep .ui-dialog {
+        width: 320px!important;
+        top: 65px!important;
+    }
 
   }
 

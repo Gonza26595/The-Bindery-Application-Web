@@ -38,6 +38,7 @@ export class EventEditComponent implements OnInit {
   public setEventValues(event:Event){
     this.eventEditForm.controls['title'].setValue(event.title);
     this.eventEditForm.controls['contentParagraph'].setValue(event.contentParagraph);
+    this.eventPosition = event.position;
   }
 
 

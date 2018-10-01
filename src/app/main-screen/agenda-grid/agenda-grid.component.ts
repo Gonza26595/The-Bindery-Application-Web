@@ -13,6 +13,10 @@ export class AgendaGridComponent implements OnInit {
   display: boolean = false;
   eventsList= new Array();
   newsId;
+  eventTitle;
+  contentParagraph;
+  imageElement;
+  imageWidth;
 
   constructor(private _router:Router, private _contentCreatorService:ContentCreatorService) { }
 
@@ -29,22 +33,25 @@ export class AgendaGridComponent implements OnInit {
 
   public showDialog(position){
     this.display = true;
-    let event = this.eventsList.find(i => i.position == position);
-    document.querySelector('#dialog-title').textContent = event.title;
-    document.querySelector('#dialog-content-paragraph').textContent = event.contentParagraph; 
-
+     let event = this.eventsList.find(i => i.position == position);
+     this.eventTitle = event.title;
+     this.contentParagraph = event.contentParagraph;
   }
+
+
+
 
   public setEventTitles(eventsList){
 
     for(let event of eventsList){
       if(event.position == 1){
         document.querySelector('#event-title-1').innerHTML = event.title;
-
       } else if (event.position == 2){
         document.querySelector('#event-title-2').innerHTML = event.title;
   }
 
 }
 }
+
+
 }

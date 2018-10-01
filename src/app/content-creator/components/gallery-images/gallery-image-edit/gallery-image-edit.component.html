@@ -26,7 +26,7 @@
           <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
         </div>
         <div class=" col-6 mt-3">
-            <button type="submit" [disabled]="disableButtonSave || imagePosition == 0 || galleryImageCreateForm.invalid" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateGalleryImage()">Save</button>
+            <button type="submit" [disabled]="disableButtonSave || imagePosition == 0 || galleryImageEditForm.invalid" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateGalleryImage()">Save</button>
           </div>
         </div>
   </form>
@@ -34,7 +34,7 @@
   <p-dialog [(visible)]="display" [modal]="true"
   [dismissableMask]="true" [responsive]="true" [width]="1200" [minWidth]="200" [minY]="70"
   [maximizable]="true" [baseZIndex]="11074" >
-  <app-screen-shot [dialogSelected]="galleryImage" (sendPosition)="getPosition($event)"></app-screen-shot>
+  <app-screen-shot [dialogSelected]="galleryImage" [position]="imagePosition" (sendPosition)="getPosition($event)"></app-screen-shot>
   </p-dialog>
 </div>
 

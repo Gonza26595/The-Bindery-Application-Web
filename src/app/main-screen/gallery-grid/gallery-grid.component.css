@@ -1,7 +1,13 @@
+
+
+
+
 .modalContent h3{
     font-family: 'Raleway', sans-serif;
     color: white;
   }
+
+
 
   .modalContent p {
       color: white;
@@ -12,6 +18,8 @@
   .carousel {
     display: none!important
 }
+
+
 
 
 @media only screen and (min-width: 300px) and (max-width:576px){
@@ -42,12 +50,12 @@
       }
 
       .card.is-flipped {
-    
+
         transform: rotateY(180deg);
 
       }
 
- 
+
 
 .card__face {
     height: 100%;
