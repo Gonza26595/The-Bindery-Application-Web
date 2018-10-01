@@ -1,0 +1,33 @@
+::ng-deep .row{
+    margin-left: 0px;
+}
+
+
+.goalsContent h1 {
+    font-family: 'Raleway',sans-serif;
+    color: #1f3c89;
+    font-size: 3.0rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.goalsContent{
+    width: 60%;
+}
+
+.goalsParagraph {
+    width: 100%;
+    max-width: 100%;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    padding-bottom: 20px;
+    font-family: 'Arial',sans-serif!important;
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+@media only screen and (min-width: 300px) and (max-width:576px){
+    .goalsContent{
+        width: 100%;
+    }
+}

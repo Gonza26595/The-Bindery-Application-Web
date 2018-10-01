@@ -19,29 +19,32 @@ export class AgendaGridComponent implements OnInit {
   ngOnInit() {
     this._contentCreatorService.getEvents().subscribe(
       data=>{
-        this.eventsList=data
+        this.eventsList=data;
+        this.setEventTitles(this.eventsList)
       },
       error=>{}
     )
   }
 
-  showDialog(id) {
+
+  public showDialog(position){
     this.display = true;
+    let event = this.eventsList.find(i => i.position == position);
+    document.querySelector('#dialog-title').textContent = event.title;
+    document.querySelector('#dialog-content-paragraph').textContent = event.contentParagraph; 
 
-    this._contentCreatorService.getEventById(id).subscribe(
-      data => {
-
-        this.setDialogValues(data);
-      },
-      error => {
-
-      }
-    )
   }
 
-  public setDialogValues(event:Event){
-    document.querySelector('#dialogTitle').textContent = event.title;
-    document.querySelector('#dialogContentParagraph').textContent = event.contentParagraph;
+  public setEventTitles(eventsList){
+
+    for(let event of eventsList){
+      if(event.position == 1){
+        document.querySelector('#event-title-1').innerHTML = event.title;
+
+      } else if (event.position == 2){
+        document.querySelector('#event-title-2').innerHTML = event.title;
   }
 
+}
+}
 }

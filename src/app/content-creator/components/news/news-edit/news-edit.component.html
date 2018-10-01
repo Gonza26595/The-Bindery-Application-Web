@@ -38,7 +38,7 @@
           <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
         </div>
         <div class=" col-6 mt-3">
-            <button type="submit" [disabled]="disableButtonSave || newsPosition == 0 || newsCreateForm.invalid " class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateNews()">Save</button>
+            <button type="submit" [disabled]="disableButtonSave || newsPosition == 0 || newsEditForm.invalid " class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateNews()">Save</button>
           </div>
         </div>
   </form>

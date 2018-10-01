@@ -7,8 +7,8 @@
   <div class="p-5 grid agenda-content">
     <div class="w-100 col-6 d-inline-block">
      <div class="w-100 m-0">
-      <h1 (click)="showDialog(eventsList[0].id)" class="w-100">
-        {{eventsList[0].title}}
+      <h1 id="event-title-1" (click)="showDialog(1)" class="w-100">
+        Evento1
       </h1>
      </div>
      <div class="text-center">
@@ -17,15 +17,17 @@
     </div>
     <div class="border-left border-white w-100 col-6 float-right">
       <div class="w-100 h-50 m-0">
-        <h1 (click)="showDialog(eventsList[1].id)" class="w-100">
-          {{eventsList[1].title}}
+        <h1 id="event-title-2" (click)="showDialog(2)" class="w-100">
+          Evento 2
         </h1>
        </div>
        <div class="w-100 h-50 mt-5">
-        <h1 class="w-100">
+         <a style="text-decoration: none" href="https://www.binderyknowledgegroup.com/" target="_blank" >
+        <h1 style="color: white"  class="w-100">
           More amazing projects? Wanna be part of something big?
           Visit BKG official website
         </h1>
+      </a>
        </div>
     </div>
   </div>
@@ -37,15 +39,18 @@
 [dismissableMask]="true" [responsive]="true" [width]="450" [minWidth]="200" [minY]="70"
 [maximizable]="true" [baseZIndex]="11074" >
 <div class="modalContent p-4 pl-5 pr-5" style="background: #193078;">
- <h3 id="dialogTitle">#ComingSoon Summer 2019: Hendere's Education & Technology</h3>
- <img src="assets/images/masquerade.jpg" class="position-relative mt-3" style="height: 220px; width: 95%;"/>
-<p class="mt-3" id="dialogContentParagraph">The ribbon has officially been cut on the opening of the BKG VZLA workspace in Valencia, Venezuela. Team Venezuela will be collaborating with local education tech start up "Hendere" to develop a digital learning platform. The platform will be first of its kind and will be completed by Summer 2019. The final platform will be able to scale Venezuelan general curriculum in an interactive and effective way, bringing quality education to thousands of students. Stay tuned...</p>
+ <h3 id="dialog-title">#ComingSoon Summer 2019: Hendere's Education & Technology</h3>
+ <img  src="assets/images/masquerade.jpg" class="position-relative mt-3" style="height: 220px; width: 95%;"/>
+<p class="mt-3" id="dialog-content-paragraph">The ribbon has officially been cut on the opening of the BKG VZLA workspace in Valencia, Venezuela. Team Venezuela will be collaborating with local education tech start up "Hendere" to develop a digital learning platform. The platform will be first of its kind and will be completed by Summer 2019. The final platform will be able to scale Venezuelan general curriculum in an interactive and effective way, bringing quality education to thousands of students. Stay tuned...</p>
 </div>
 </p-dialog>
 
 
 </div>
 </div>
+
+
+
 
 
 

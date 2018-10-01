@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
 
 @Component({
   selector: 'app-gallery-grid',
@@ -8,14 +9,36 @@ import { Component, OnInit } from '@angular/core';
 export class GalleryGridComponent implements OnInit {
 
   display: boolean = false;
+  imagesList = new Array();
 
-  constructor() { }
+  constructor(private _contentCreatorService:ContentCreatorService) { }
 
   ngOnInit() {
+    this._contentCreatorService.getImages().subscribe(
+      data=>{
+        this.imagesList = data;
+      },
+      error =>{
+
+      }
+    )
   }
 
-  showDialog() {
-    this.display = true;
+  
+
+
+
+public flip() {
+  var card = document.querySelector('.card');
+  card.classList.toggle('is-flipped');
+};
+
+
+public showDialog(position){
+  this.display = true;
+  let event = this.imagesList.find(i => i.position == position);
+  document.querySelector('#dialogTitle').textContent = event.title;
+  document.querySelector('#dialogContentParagraph').textContent = event.contentParagraph; 
 }
 
 }
