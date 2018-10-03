@@ -9,7 +9,7 @@ export class SystemConfiguration {
       { "Content-Type": "multipart/form-data" }
     ) };
 
-    private static API_URL: string =//"http://empretec-core-api.getitsmart.net/v1/";
+    private static API_URL: string =
                                     "http://localhost:5000/v1/";
 
     public static NEWS: string = SystemConfiguration.API_URL + "news";

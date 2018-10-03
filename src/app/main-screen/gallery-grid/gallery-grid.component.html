@@ -1,35 +1,38 @@
 <div class="gallery mb-1" style="height: 530px">
   <div style="height: 100%;" class="row h-50">
-   <div  (click)="showDialog(1,450)" style="height: 100%" class="col-3 pl-0 pr-1">
+   <div  (click)="showDialog(1,400)" style="height: 100%" class="col-3 pl-0 pr-1">
      <img id="imagen" class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
    </div>
-   <div  (click)="showDialog(2)" style="height: 100%;" class="col-3 pl-0 pr-1">
+   <div  (click)="showDialog(2,400)" style="height: 100%;" class="col-3 pl-0 pr-1">
       <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
    </div>
-   <div  (click)="showDialog(3)" style="height: 100%;" class="col-6 pl-0">
+   <div  (click)="showDialog(3,600)" style="height: 100%;" class="col-6 pl-0">
       <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
    </div>
   </div>
   <div style="height: 100%;" class="row h-50">
-  <div  (click)="showDialog(4)" style="height: 100%;" class="col-6 pl-0 pt-1 pr-1">
+  <div  (click)="showDialog(4,600)" style="height: 100%;" class="col-6 pl-0 pt-1 pr-1">
       <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
   </div>
-  <div (click)="showDialog(5)" style="height: 100%;" class="col-6 pt-1 pl-0">
+  <div (click)="showDialog(5,600)" style="height: 100%;" class="col-6 pt-1 pl-0">
       <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
   </div>
     </div>
+    <div class="dialog-image"></div>
     <p-dialog [(visible)]="display" [modal]="true"
     [dismissableMask]="true" [responsive]="true" [width]="1250"  [minWidth]="200" [minY]="70"
     [maximizable]="true" [baseZIndex]="11074" >
-    <div style="width: 90%" class="row pl-5">
-        <div class="col-6">
-                <img src="assets/images/masquerade.jpg" id="dialog-image" class="position-relative mt-3" style="height: 300px;width:var (--width)"/>
-                <p style="font-weight: 500;font-family: 'Fira Sans Condensed',sans-serif; width: 65%;background: linear-gradient(to right, rgba(23,217,194,1) 0%, rgba(23,217,194,1) 1%, rgba(0,0,0,1) 100%);" class="p-3 pr-0 mt-3">photo by {{imageAuthor}}</p>
+    <div>
+    <div style="width: 90%" class="m-auto row pl-5">
+        <div class="">
+                <img src="assets/images/masquerade.jpg" class="dialog-image position-relative mt-3" [ngStyle]="setImageStyles()"/>
+                <p style="font-weight: 500;font-family: 'Fira Sans Condensed',sans-serif; width: 225px;background: linear-gradient(to right, rgba(23,217,194,1) 0%, rgba(23,217,194,1) 1%, rgba(0,0,0,1) 100%);" class="p-3 pr-0 mt-3">photo by {{imageAuthor}}</p>
         </div>
-    <div class="modalContent p-4 pl-5 pr-5 col-6 mt-4">
+    <div class="modalContent p-4 pl-5 pr-5  mt-4">
      <h3 id="image-title">{{imageTitle}}</h3>
     <p id="image-content-paragraph" class="mt-3">{{imageContentParagraph}}</p>
     </div>
+  </div>
    </div>
 
 

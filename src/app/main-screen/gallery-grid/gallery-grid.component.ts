@@ -45,12 +45,17 @@ public showDialog(position,imageWidth){
   this.imageTitle = image.title;
   this.imageContentParagraph = image.contentParagraph;
   this.imageAuthor = image.author;
-  this.imageWidth = imageWidth
+  this.imageWidth =  imageWidth;
 
- setTimeout(function(){
-   console.log(document.querySelector('#dialog-image').nodeValue)
- },2000)
+}
 
+
+setImageStyles(){
+  let styles = {
+    'height': '300px',
+    'width' : this.imageWidth + 'px'
+  };
+  return styles;
 
 }
 

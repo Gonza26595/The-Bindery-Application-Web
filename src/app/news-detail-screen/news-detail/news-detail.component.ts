@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
+import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { News } from '../../content-creator/classes/news';
 import * as moment from 'moment';
 
@@ -11,18 +11,35 @@ import * as moment from 'moment';
 })
 export class NewsDetailComponent implements OnInit {
 
-  constructor(private _contentCreatorService:ContentCreatorService, private _activateRoute:ActivatedRoute) { }
+
+  newsList = new Array();
+  asideList = new Array();
+  newsId;
+
+  constructor(private _router:Router,private _contentCreatorService:ContentCreatorService, private _activateRoute:ActivatedRoute) { }
 
   ngOnInit() {
-    let newsid= this._activateRoute.snapshot.paramMap.get('newsId');
 
-    this._contentCreatorService.getNewsById(newsid).subscribe(
+    this.newsId= this._activateRoute.snapshot.paramMap.get('newsId');
+
+    this._contentCreatorService.getNewsById(this.newsId).subscribe(
       data=>{
         this.setNewsDetail(data);
+
       },
       error=>{
 
       }
+    )
+
+    this._contentCreatorService.getNews().subscribe(
+       data=>{
+         this.newsList = data;
+         this.setAsideNews(this.newsList);
+       },
+       error=>{
+
+       }
     )
   }
 
@@ -41,5 +58,34 @@ export class NewsDetailComponent implements OnInit {
     document.querySelector('#contentParagraph').innerHTML = news.contentParagraph;
 
   }
+
+
+  public setAsideNews(newsList){
+    var news1 = newsList[Math.floor(Math.random() * newsList.length)];
+    document.getElementById('aside-1').innerHTML = news1.title;
+    newsList.splice(newsList.indexOf(news1),1);
+    var news2 = newsList[Math.floor(Math.random() * newsList.length)];
+    document.getElementById('aside-2').innerHTML = news2.title;
+    newsList.splice(newsList.indexOf(news2),1);
+    var news3 = newsList[Math.floor(Math.random() * newsList.length)];
+    document.getElementById('aside-3').innerHTML = news3.title;
+    this.asideList.push(news1,news2,news3);
+  }
+
+  public goToAsideNewsDetail(position){
+    if(position == 1){
+      this._router.navigate(['/news-detail/' + this.asideList[0].id]);
+      location.reload();
+    } else if(position == 2){
+      this._router.navigate(['/news-detail/' + this.asideList[1].id]);
+      location.reload();
+    } else if(position == 3){
+      this._router.navigate(['/news-detail/' + this.asideList[2].id]);
+      location.reload();
+    }
+
+  }
+
+
 
 }

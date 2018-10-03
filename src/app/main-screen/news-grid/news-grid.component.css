@@ -51,13 +51,22 @@
      padding-bottom: 5px!important;
    }
 
+
+
    .news-1-container div {
      right: 0%!important;
    }
 
    .news-1-container div span {
-     margin-top: 40px!important;
+     margin-top: 20px!important;
    }
+
+   #news-title-1{
+    width: 85%;
+    float: right;
+    font-size: 1.1rem;
+
+  }
 
    .row-2-container{
      height: 350px!important;
@@ -72,6 +81,7 @@
    .news-4-container{
      height: 175px!important;
      padding-top: 5px!important;
+     background: #eeeeee!important;
    }
 
    .news-4-container h2{
@@ -87,8 +97,7 @@
    .news-4-container div{
      width: 50%!important;
      float: right;
-     bottom: 0%!important;
-     background: #eeeeee!important;
+     top: 20%!important;
      height: 100%!important;
    }
 
@@ -100,6 +109,7 @@
    .news-5-container{
      height: 175px!important;
      padding-bottom: 5px!important;
+     background: #eeeeee!important;
    }
 
    .news-5-container img{
@@ -109,8 +119,7 @@
    .news-5-container div{
     width: 50%!important;
     float: left!important;
-    bottom: 0%!important;
-    background: #eeeeee!important;
+    top: 20%!important;
     height: 100%!important;
     padding-left: 0px!important;
    }
@@ -123,6 +132,8 @@
   }
 
   .news-5-container span{
+    position: relative;
+    top: 10%;
     margin-top: 0px!important;
   }
 
@@ -145,6 +156,11 @@
      float: left!important;
    }
 
+   .row-4-container-1 span{
+     position: relative;
+     top: 10%;
+   }
+
    .row-4-container-2 img {
      float: right!important
    }
@@ -154,7 +170,9 @@
    }
 
    .news-4-container span{
-     margin-top: 0px!important;
+    position: relative;
+    top: 10%;
+    margin-top: 0px!important;
    }
 
    .what-are-you-bound-to-container{
@@ -168,7 +186,11 @@
 
    #row-5-container-2 img{
      float: left!important;
+   }
 
+   #row-5-container-2 div {
+     top: 10%!important;
+     position: relative;
    }
 
   }
