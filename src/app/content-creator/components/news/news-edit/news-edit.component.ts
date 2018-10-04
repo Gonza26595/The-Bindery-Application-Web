@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '../../../../../../node_modul
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { News } from '../../../classes/news';
 import * as moment from 'moment';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class NewsEditComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService) {
+  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
 
     this.newsEditForm = new FormGroup({
       section: new FormControl('',Validators.required),
@@ -37,14 +38,24 @@ export class NewsEditComponent implements OnInit {
    }
 
    ngOnInit() {
-    this._contentCreateService.getNewsById(this.newsId).subscribe(
-      data=>{this.setNewsValues(data); },
+
+    //SQL-SERVER
+    // this._contentCreateService.getNewsById(this.newsId).subscribe(
+    //   data=>{this.setNewsValues(data); },
+    //   error=>{}
+    // );
+
+
+    //FIREBASE
+    this._firebaseService.getNewsById(this.newsId).subscribe(
+
+      data=>{this.setNewsValues(data)},
       error=>{}
-    );
+    )
   }
 
 
-  public setNewsValues(news:News){
+  public setNewsValues(news){
 
     var dateISO = news.newsDate
     var newsDate = moment(dateISO).utc().format('DD-MM-YYYY');
@@ -88,17 +99,28 @@ export class NewsEditComponent implements OnInit {
   public updateNews(){
     let newsUpdated = this.createNewsInstance();
     console.log(newsUpdated);
-    this._contentCreateService.updateNews(this.newsId,newsUpdated).subscribe(
-      data=>{
-        this.successMessage = new String('La noticia ha sido actualizada');
-        setTimeout(() =>{
-          this.back();
-        },2000);
-      },
-      error=>{
 
+    //SQL-SERVER
+    // this._contentCreateService.updateNews(this.newsId,newsUpdated).subscribe(
+    //   data=>{
+    //     this.successMessage = new String('La noticia ha sido actualizada');
+    //     setTimeout(() =>{
+    //       this.back();
+    //     },2000);
+    //   },
+    //   error=>{
+
+    //   }
+    // )
+
+    //FIREBASE
+    this._firebaseService.updateNews(this.newsId,newsUpdated).then(
+      data=>{
+        this.successMessage = "La noticia se actualizo exitosamente"
       }
-    )
+
+      );;
+
   }
 
   public back(){

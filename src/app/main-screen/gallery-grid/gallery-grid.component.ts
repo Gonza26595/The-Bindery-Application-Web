@@ -1,5 +1,6 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
+import { FirebaseService } from '../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-gallery-grid',
@@ -15,18 +16,28 @@ export class GalleryGridComponent implements OnInit {
   imageAuthor;
   imageWidth;
 
-  constructor(private _contentCreatorService:ContentCreatorService) { }
+  constructor(private _contentCreatorService:ContentCreatorService, private _firebaseService:FirebaseService) { }
 
   ngOnInit() {
-    this._contentCreatorService.getImages().subscribe(
+
+    //SQL-SERVER
+    // this._contentCreatorService.getImages().subscribe(
+    //   data=>{
+    //     this.imagesList = data;
+    //     console.log(this.imagesList);
+
+    //   },
+    //   error =>{
+
+    //   }
+    // )
+
+    //FIREBASE
+    this._firebaseService.getImages().subscribe(
       data=>{
-        this.imagesList = data;
-        console.log(this.imagesList);
+        this.imagesList = data;},
+      error =>{}
 
-      },
-      error =>{
-
-      }
     )
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '../../../../node_modules/@angular/router';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
 import { Event } from '../../content-creator/classes/event';
+import { FirebaseService } from '../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-agenda-grid',
@@ -18,16 +19,28 @@ export class AgendaGridComponent implements OnInit {
   imageElement;
   imageWidth;
 
-  constructor(private _router:Router, private _contentCreatorService:ContentCreatorService) { }
+  constructor(private _router:Router, private _contentCreatorService:ContentCreatorService,private _firebaseService:FirebaseService) { }
 
   ngOnInit() {
-    this._contentCreatorService.getEvents().subscribe(
+
+    // SQL-SERVER
+    // this._contentCreatorService.getEvents().subscribe(
+    //   data=>{
+    //     this.eventsList=data;
+    //     this.setEventTitles(this.eventsList)
+    //   },
+    //   error=>{}
+    // )
+
+    //FIREBASE
+    this._firebaseService.getEvents().subscribe(
       data=>{
         this.eventsList=data;
         this.setEventTitles(this.eventsList)
       },
       error=>{}
     )
+
   }
 
 

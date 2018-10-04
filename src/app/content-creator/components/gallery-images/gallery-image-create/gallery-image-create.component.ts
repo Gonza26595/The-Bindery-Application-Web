@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
 import { GalleryImage } from '../../../classes/galleryImage';
 import { ContentCreatorService } from '../../../services/content-creator.service';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-gallery-image-create',
@@ -21,7 +22,7 @@ export class GalleryImageCreateComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService) {
+  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
 
     this.galleryImageCreateForm = new FormGroup({
       title: new FormControl('',Validators.required),
@@ -49,18 +50,33 @@ export class GalleryImageCreateComponent implements OnInit {
   public saveNewGalleryImage(){
     let newGalleryImage = this.createGalleryImageInstance();
 
-    this._contentCreateService.saveGalleryImage(newGalleryImage).subscribe(
-      data=>{
-       this.successMessage = "La imagen fue creada exitosamente"
-       this.disableButtonSave = true;
-       setTimeout(() =>{
-         this.back();
-       },2000);
-      },
-      error=>{
+    //SQL-SERVER
+    // this._contentCreateService.saveGalleryImage(newGalleryImage).subscribe(
+    //   data=>{
+    //    this.successMessage = "La imagen fue creada exitosamente"
+    //    this.disableButtonSave = true;
+    //    setTimeout(() =>{
+    //      this.back();
+    //    },2000);
+    //   },
+    //   error=>{
 
+    //   }
+    // )
+
+    //FIREBASE
+    this._firebaseService.saveGalleryImage(newGalleryImage).then(
+      data=>{
+        this.successMessage = "La imagen se creo exitosamente"
+        this.disableButtonSave = true;
+        setTimeout(() =>{
+          this.back();
+        },2000);
       }
-    )
+
+      );
+
+
   }
 
   public back(){

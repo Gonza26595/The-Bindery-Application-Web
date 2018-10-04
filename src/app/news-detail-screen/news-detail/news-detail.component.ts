@@ -3,6 +3,7 @@ import { ContentCreatorService } from '../../content-creator/services/content-cr
 import { ActivatedRoute, Router } from '../../../../node_modules/@angular/router';
 import { News } from '../../content-creator/classes/news';
 import * as moment from 'moment';
+import { FirebaseService } from '../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-news-detail',
@@ -16,36 +17,51 @@ export class NewsDetailComponent implements OnInit {
   asideList = new Array();
   newsId;
 
-  constructor(private _router:Router,private _contentCreatorService:ContentCreatorService, private _activateRoute:ActivatedRoute) { }
+  constructor(private _router:Router,private _contentCreatorService:ContentCreatorService,private _firebaseService:FirebaseService, private _activateRoute:ActivatedRoute) { }
 
   ngOnInit() {
 
     this.newsId= this._activateRoute.snapshot.paramMap.get('newsId');
 
-    this._contentCreatorService.getNewsById(this.newsId).subscribe(
+    //SQL-SERVER
+    // this._contentCreatorService.getNewsById(this.newsId).subscribe(
+    //   data=>{
+    //     this.setNewsDetail(data);
+    //   },
+    //   error=>{}
+    // )
+
+    //FIREBASE
+    this._firebaseService.getNewsById(this.newsId).subscribe(
       data=>{
+        console.log(data);
         this.setNewsDetail(data);
-
       },
-      error=>{
-
-      }
+      error=>{}
     )
 
-    this._contentCreatorService.getNews().subscribe(
-       data=>{
-         this.newsList = data;
-         this.setAsideNews(this.newsList);
-       },
-       error=>{
+    //SQL-SERVER
+    // this._contentCreatorService.getNews().subscribe(
+    //    data=>{
+    //      this.newsList = data;
+    //      this.setAsideNews(this.newsList);
+    //    },
+    //    error=>{}
+    // )
 
-       }
-    )
+    //FIREBASE
+    this._firebaseService.getNews().subscribe(
+      data=>{
+        this.newsList = data;
+        this.setAsideNews(this.newsList);
+      },
+      error=>{}
+   )
   }
 
 
 
-  public setNewsDetail(news:News){
+  public setNewsDetail(news){
 
     var dateISO = news.newsDate
     var newsDate = moment(dateISO).utc().format('MMM Do YY');

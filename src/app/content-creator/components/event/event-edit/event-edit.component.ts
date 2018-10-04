@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '../../../../../../node_modules/@angular/forms';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { Event } from '../../../classes/event';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-event-edit',
@@ -18,7 +19,7 @@ export class EventEditComponent implements OnInit {
   event;
   eventPosition;
 
-  constructor(private _contentCreateService:ContentCreatorService) {
+  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
 
     this.eventEditForm = new FormGroup({
       title : new FormControl('',Validators.required),
@@ -28,14 +29,22 @@ export class EventEditComponent implements OnInit {
    }
 
   ngOnInit() {
-    this._contentCreateService.getEventById(this.eventId).subscribe(
+
+    //SQL-SERVER
+    // this._contentCreateService.getEventById(this.eventId).subscribe(
+    //   data=>{this.setEventValues(data)},
+    //   error=>{}
+    // );
+
+    //FIREBASE
+    this._firebaseService.getEventById(this.eventId).subscribe(
       data=>{this.setEventValues(data)},
       error=>{}
     );
   }
 
 
-  public setEventValues(event:Event){
+  public setEventValues(event){
     this.eventEditForm.controls['title'].setValue(event.title);
     this.eventEditForm.controls['contentParagraph'].setValue(event.contentParagraph);
     this.eventPosition = event.position;
@@ -61,17 +70,28 @@ export class EventEditComponent implements OnInit {
   public updateEvent(){
     let eventUpdated = this.createEventInstance();
 
-    this._contentCreateService.updateEvent(this.eventId,eventUpdated).subscribe(
-      data=>{
-        this.successMessage= new String('El evento ha sido actualizado');
-        setTimeout(() =>{
-          this.back();
-        },2000);
-      },
-      error=>{
+    //SQL-SERVER
+    // this._contentCreateService.updateEvent(this.eventId,eventUpdated).subscribe(
+    //   data=>{
+    //     this.successMessage= new String('El evento ha sido actualizado');
+    //     setTimeout(() =>{
+    //       this.back();
+    //     },2000);
+    //   },
+    //   error=>{
 
+    //   }
+    // )
+
+    //FIREBASE
+    this._firebaseService.updateEvent(this.eventId,eventUpdated).then(
+      data=>{
+        this.successMessage = "El evento se actualizo exitosamente"
       }
-    )
+
+      );;
+
+
   }
 
 

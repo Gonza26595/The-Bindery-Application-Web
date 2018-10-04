@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { ContentCreatorService } from '../../../services/content-creator.service';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-event-list',
@@ -12,15 +13,25 @@ export class EventListComponent implements OnInit {
   eventsList = new Array();
   @Output() editEvent = new EventEmitter();
 
-  constructor(private _contentCreatorService:ContentCreatorService) { }
+  constructor(private _contentCreatorService:ContentCreatorService,private _firebaseService:FirebaseService) { }
 
   ngOnInit() {
-    this._contentCreatorService.getEvents().subscribe(
-      data=>{
-       this.eventsList = data;
-      },
-       error=>{
 
+    //SQL-SERVER
+    // this._contentCreatorService.getEvents().subscribe(
+    //   data=>{
+    //    this.eventsList = data;
+    //   },
+    //    error=>{
+
+    //   }
+    // )
+
+
+    //FIREBASE
+    this._firebaseService.getEvents().subscribe(
+      data=>{
+        this.eventsList = data;
       }
     )
   }

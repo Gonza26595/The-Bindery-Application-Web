@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '../../../../../../node_modul
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { News } from '../../../classes/news';
 import * as moment from 'moment';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-news-create',
@@ -23,7 +24,7 @@ export class NewsCreateComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService) {
+  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
 
     this.newsCreateForm = new FormGroup({
       section: new FormControl('',Validators.required),
@@ -64,19 +65,33 @@ export class NewsCreateComponent implements OnInit {
   public saveNewNews(){
     let newNews = this.createNewsInstance();
 
-    console.log(newNews);
-    this._contentCreateService.saveNews(newNews).subscribe(
+    //SQL-SERVER
+    // this._contentCreateService.saveNews(newNews).subscribe(
+    //   data=>{
+    //     this.successMessage = "La noticia fue creada exitosamente"
+    //     this.disableButtonSave = true;
+    //     setTimeout(() =>{
+    //       this.back();
+    //     },2000);
+    //   },
+    //   error=>{
+
+    //   }
+    // )
+
+    //FIREBASE
+     this._firebaseService.saveNews(newNews).then(
       data=>{
-        this.successMessage = "La noticia fue creada exitosamente"
+        this.successMessage = "La noticia se creo exitosamente"
         this.disableButtonSave = true;
         setTimeout(() =>{
           this.back();
         },2000);
-      },
-      error=>{
-
       }
-    )
+
+      );
+
+
   }
 
   public back(){

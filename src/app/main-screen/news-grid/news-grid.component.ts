@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
 import { Footer } from '../../../../node_modules/primeng/components/common/shared';
+import { FirebaseService } from '../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-news-grid',
@@ -16,16 +17,28 @@ export class NewsGridComponent implements OnInit {
   detailList = new Array();
 
 
-  constructor(private _router:Router, private _contentCreatorService:ContentCreatorService) { }
+  constructor(private _router:Router, private _contentCreatorService:ContentCreatorService, private _firebaseService:FirebaseService) { }
 
   ngOnInit() {
-    this._contentCreatorService.getNews().subscribe(
-      data=>{
-        this.newsList=data
-       this.setNewsTitles(this.newsList);
-      },
-      error=>{}
+
+    //SQL-SERVER
+    // this._contentCreatorService.getNews().subscribe(
+    //   data=>{
+    //     this.newsList=data
+    //    this.setNewsTitles(this.newsList);
+    //   },
+    //   error=>{}
+    // )
+
+
+    //FIREBASE
+    this._firebaseService.getNews().subscribe(
+       data=>{
+         this.newsList = data
+         this.setNewsTitles(this.newsList);
+       }
     )
+
   }
 
 

@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { GalleryImage } from '../../../classes/galleryImage';
 import { Validators, FormGroup, FormControl } from '../../../../../../node_modules/@angular/forms';
 import { ContentCreatorService } from '../../../services/content-creator.service';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-gallery-image-edit',
@@ -20,7 +21,7 @@ export class GalleryImageEditComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService) {
+  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
 
     this.galleryImageEditForm = new FormGroup({
       title: new FormControl('',Validators.required),
@@ -31,14 +32,22 @@ export class GalleryImageEditComponent implements OnInit {
    }
 
    ngOnInit() {
-    this._contentCreateService.getImageById(this.galleryImageId).subscribe(
+
+    //SQL-SERVER
+    // this._contentCreateService.getImageById(this.galleryImageId).subscribe(
+    //   data=>{this.setGalleryImageValues(data)},
+    //   error=>{}
+    // );
+
+    //FIREBASE
+    this._firebaseService.getImageById(this.galleryImageId).subscribe(
       data=>{this.setGalleryImageValues(data)},
       error=>{}
     );
   }
 
 
-  public setGalleryImageValues(galleryImage:GalleryImage){
+  public setGalleryImageValues(galleryImage){
     this.galleryImageEditForm.controls['title'].setValue(galleryImage.title);
     this.galleryImageEditForm.controls['contentParagraph'].setValue(galleryImage.contentParagraph);
     this.galleryImageEditForm.controls['author'].setValue(galleryImage.author);
@@ -60,17 +69,26 @@ export class GalleryImageEditComponent implements OnInit {
   public updateGalleryImage(){
     let galleryImageUpdated = this.createGalleryImageInstance();
 
-    this._contentCreateService.updateGalleryImage(this.galleryImageId,galleryImageUpdated).subscribe(
-      data=>{
-       this.successMessage = new String('La imagen ha sido actualizada');
-       setTimeout(() =>{
-        this.back();
-      },2000);
-      },
-      error=>{
+    //SQL-SERVER
+    // this._contentCreateService.updateGalleryImage(this.galleryImageId,galleryImageUpdated).subscribe(
+    //   data=>{
+    //    this.successMessage = new String('La imagen ha sido actualizada');
+    //    setTimeout(() =>{
+    //     this.back();
+    //   },2000);
+    //   },
+    //   error=>{
 
+    //   }
+    // )
+
+    //FIREBASE
+    this._firebaseService.updateGalleryImage(this.galleryImageId,galleryImageUpdated).then(
+      data=>{
+        this.successMessage = "La imagen se actualizo exitosamente"
       }
-    )
+
+      );
   }
 
   public back(){

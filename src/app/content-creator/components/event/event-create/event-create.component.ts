@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '../../../../../../node_modul
 import { Location } from '../../../../../../node_modules/@angular/common';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { Event } from '../../../classes/event';
+import { FirebaseService } from '../../../../shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-event-create',
@@ -20,7 +21,7 @@ export class EventCreateComponent implements OnInit {
   event;
   eventPosition: number = 0;
 
-  constructor(private _location:Location,private _contentCreateService:ContentCreatorService) {
+  constructor(private _location:Location,private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
 
     this.eventCreateForm = new FormGroup({
       title : new FormControl('',Validators.required),
@@ -51,18 +52,37 @@ export class EventCreateComponent implements OnInit {
 
   public saveNewEvent(){
     let newEvent = this.createEventInstance();
-    this._contentCreateService.saveEvent(newEvent).subscribe(
+
+    //SQL-SERVER
+    // this._contentCreateService.saveEvent(newEvent).subscribe(
+    //   data=>{
+    //     this.successMessage= "El evento fue creado exitosamente"
+    //     this.disableButtonSave = true;
+    //     setTimeout(() =>{
+    //       this.back();
+    //     },2000);
+    //   },
+    //   error=>{
+
+    //   }
+    // )
+
+    //FIREBASE
+
+
+      this._firebaseService.saveEvent(newEvent).then(
       data=>{
-        this.successMessage= "El evento fue creado exitosamente"
+        this.successMessage = "El evento se creo exitosamente"
         this.disableButtonSave = true;
         setTimeout(() =>{
           this.back();
         },2000);
-      },
-      error=>{
-
       }
-    )
+
+      );
+
+
+
   }
 
 

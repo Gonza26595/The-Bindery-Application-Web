@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../shared/base/base.service';
-import { HttpClient } from '../../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { SystemConfiguration } from '../../configuration/system.configuration';
 import { TheBinderyContent } from '../classes/theBinderyContent';
 
