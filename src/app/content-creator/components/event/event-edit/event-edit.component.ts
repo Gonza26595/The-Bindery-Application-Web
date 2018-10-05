@@ -84,12 +84,7 @@ export class EventEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateEvent(this.eventId,eventUpdated).then(
-      data=>{
-        this.successMessage = "El evento se actualizo exitosamente"
-      }
-
-      );;
+    this._firebaseService.updateEvent(this.eventId,eventUpdated);
 
 
   }

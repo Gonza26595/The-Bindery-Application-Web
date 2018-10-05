@@ -70,16 +70,12 @@ export class EventCreateComponent implements OnInit {
     //FIREBASE
 
 
-      this._firebaseService.saveEvent(newEvent).then(
-      data=>{
-        this.successMessage = "El evento se creo exitosamente"
-        this.disableButtonSave = true;
-        setTimeout(() =>{
-          this.back();
-        },2000);
-      }
+      this._firebaseService.saveEvent(newEvent);
+      this.successMessage = "el evento se creo exitosamente"
+    setTimeout(()=>{
+      this.back();
+    },2000)
 
-      );
 
 
 

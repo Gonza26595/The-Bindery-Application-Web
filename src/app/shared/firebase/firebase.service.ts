@@ -3,7 +3,9 @@ import { AngularFireDatabase} from '../../../../node_modules/@angular/fire/datab
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { TheBinderyContent } from '../../content-creator/classes/theBinderyContent';
 import { Observable, observable } from '../../../../node_modules/rxjs';
-import { database } from '../../../../node_modules/firebase';
+import { FirebaseFirestore, FirebaseDatabase } from '../../../../node_modules/@angular/fire';
+
+
 
 
 
@@ -15,83 +17,147 @@ export class FirebaseService {
   items: Observable<any[]>;
 
   constructor(private _db:AngularFireDatabase, private _store:AngularFirestore) {
-
   }
 
 
   public saveNews(data){
     data.id = Math.floor(Math.random() * 1000000000);
-    var news = JSON.parse(JSON.stringify(data))
-    return this._store.collection('news').doc(news.id+'').set(news);
+    const itemRef = this._db.object('news/' + data.id);
+    this._db.list('/news').query.once("value").then(
+      result=>{
+       var keys = Object.keys(result.val())
+        for(let key of keys){
+          this._db.object('/news/' + key).query.once("value").then(
+            result=>{
+              if(result.val().position == data.position && result.val().id != data.id){
+                this._db.object('news/'+ result.val().id).update({'position':'0'});
+              }
+            })
+        }
+      })
+         itemRef.set(data);
+
 
   }
 
   public saveEvent(data:TheBinderyContent){
-
-    var batch = this._store.firestore.batch();
     data.id = Math.floor(Math.random() * 1000000000);
-    var event = JSON.parse(JSON.stringify(data))
-    const ref1 = this._store.collection('events').doc(event.id+'').ref;
-    const ref2 = this._store.collection('news').doc(event.id+'').ref;
+    const itemRef = this._db.object('events/' + data.id);
+    this._db.list('/events').query.once("value").then(
+      result=>{
+       var keys = Object.keys(result.val())
+        for(let key of keys){
+          this._db.object('/events/' + key).query.once("value").then(
+            result=>{
+              if(result.val().position == data.position && result.val().id != data.id){
+                this._db.object('events/'+ result.val().id).update({'position':'0'});
+              }
+            })
+        }
+      })
+         itemRef.set(data);
 
-
-    batch.set(ref2,event);
-    batch.set(ref1,event);
-
-
-    return batch.commit();
   }
 
   public saveGalleryImage(data:TheBinderyContent){
     data.id = Math.floor(Math.random() * 1000000000);
-    var image = JSON.parse(JSON.stringify(data))
-    return this._store.collection('gallery-images').doc(image.id+'').set(image);
-
+    const itemRef = this._db.object('gallery-images/' + data.id);
+    this._db.list('/gallery-images').query.once("value").then(
+      result=>{
+       var keys = Object.keys(result.val())
+        for(let key of keys){
+          this._db.object('/gallery-images/' + key).query.once("value").then(
+            result=>{
+              if(result.val().position == data.position && result.val().id != data.id){
+                this._db.object('gallery-images/'+ result.val().id).update({'position':'0'});
+              }
+            })
+        }
+      })
+         itemRef.set(data);
   }
 
 
   public getNews(){
 
+    this.items = this._db.list('news').valueChanges()
 
-
-
-
-   return  this._store.collection('news').valueChanges();
+    return  this.items ;
   }
 
   public getEvents(){
-    return  this._store.collection('events').valueChanges();
-  }
+
+    this.items = this._db.list('events').valueChanges()
+
+    return  this.items ;}
 
   public getImages(){
-    return  this._store.collection('gallery-images').valueChanges();
+    this.items = this._db.list('gallery-images').valueChanges()
+
+    return  this.items ;
   }
 
   public updateNews(newsId,data:TheBinderyContent){
-    var news = JSON.parse(JSON.stringify(data))
-   return this._store.collection('news').doc(newsId + '').update(news);
+    const itemRef = this._db.object('news/' + newsId);
+    this._db.list('/news').query.once("value").then(
+      result=>{
+       var keys = Object.keys(result.val())
+        for(let key of keys){
+          this._db.object('/news/' + key).query.once("value").then(
+            result=>{
+              if(result.val().position == data.position && result.val().id != newsId){
+                this._db.object('news/'+ result.val().id).update({'position':'0'});
+              }
+            })
+        }
+      })
+         itemRef.update(data);
   }
 
   public updateEvent(eventId,data:TheBinderyContent){
-    var event = JSON.parse(JSON.stringify(data))
-    return this._store.collection('events').doc(eventId+ '').update(event);
+    const itemRef = this._db.object('events/' + eventId);
+    this._db.list('/events').query.once("value").then(
+      result=>{
+       var keys = Object.keys(result.val())
+        for(let key of keys){
+          this._db.object('/events/' + key).query.once("value").then(
+            result=>{
+              if(result.val().position == data.position && result.val().id != eventId){
+                this._db.object('events/'+ result.val().id).update({'position':'0'});
+              }
+            })
+        }
+      })
+         itemRef.update(data);
   }
 
   public updateGalleryImage(galleryImageId,data:TheBinderyContent){
-    var image = JSON.parse(JSON.stringify(data))
-    return this._store.collection('gallery-images').doc(galleryImageId+ '').update(image);
+    const itemRef = this._db.object('gallery-images/' + galleryImageId);
+    this._db.list('/gallery-images').query.once("value").then(
+      result=>{
+       var keys = Object.keys(result.val())
+        for(let key of keys){
+          this._db.object('/gallery-images/' + key).query.once("value").then(
+            result=>{
+              if(result.val().position == data.position && result.val().id != galleryImageId){
+                this._db.object('gallery-images/'+ result.val().id).update({'position':'0'});
+              }
+            })
+        }
+      })
+         itemRef.update(data);
   }
 
   public getNewsById(newsId){
-   return this._store.collection('news').doc(newsId + '').valueChanges();
+    return  this._db.object('news/'+ newsId).valueChanges() ;
   }
 
   public getEventById(eventId){
-    return this._store.collection('events').doc(eventId).valueChanges();
+    return  this._db.object('events/'+ eventId).valueChanges() ;
   }
 
   public getImageById(galleryImageId){
-    return this._store.collection('gallery-images').doc(galleryImageId).valueChanges();
+    return  this._db.object('gallery-images/'+ galleryImageId).valueChanges() ;
   }
 
 }

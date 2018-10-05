@@ -83,12 +83,11 @@ export class GalleryImageEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateGalleryImage(this.galleryImageId,galleryImageUpdated).then(
-      data=>{
-        this.successMessage = "La imagen se actualizo exitosamente"
-      }
-
-      );
+    this._firebaseService.updateGalleryImage(this.galleryImageId,galleryImageUpdated)
+    this.successMessage = "la imagen se actualizo exitosamente"
+    setTimeout(()=>{
+      this.back();
+    },2000)
   }
 
   public back(){

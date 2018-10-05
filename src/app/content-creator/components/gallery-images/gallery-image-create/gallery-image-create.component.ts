@@ -65,16 +65,11 @@ export class GalleryImageCreateComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.saveGalleryImage(newGalleryImage).then(
-      data=>{
-        this.successMessage = "La imagen se creo exitosamente"
-        this.disableButtonSave = true;
-        setTimeout(() =>{
-          this.back();
-        },2000);
-      }
-
-      );
+    this._firebaseService.saveGalleryImage(newGalleryImage)
+    this.successMessage = "la imagen se creo exitosamente"
+    setTimeout(()=>{
+      this.back();
+    },2000)
 
 
   }

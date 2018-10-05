@@ -114,12 +114,11 @@ export class NewsEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateNews(this.newsId,newsUpdated).then(
-      data=>{
-        this.successMessage = "La noticia se actualizo exitosamente"
-      }
-
-      );;
+    this._firebaseService.updateNews(this.newsId,newsUpdated)
+    this.successMessage = "la imagen se actualizo exitosamente"
+    setTimeout(()=>{
+      this.back();
+    },2000)
 
   }
 

@@ -80,16 +80,11 @@ export class NewsCreateComponent implements OnInit {
     // )
 
     //FIREBASE
-     this._firebaseService.saveNews(newNews).then(
-      data=>{
-        this.successMessage = "La noticia se creo exitosamente"
-        this.disableButtonSave = true;
-        setTimeout(() =>{
-          this.back();
-        },2000);
-      }
-
-      );
+     this._firebaseService.saveNews(newNews)
+     this.successMessage = "la noticia se creo exitosamente"
+    setTimeout(()=>{
+      this.back();
+    },2000)
 
 
   }
