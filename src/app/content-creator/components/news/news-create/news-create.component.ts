@@ -4,6 +4,7 @@ import { ContentCreatorService } from '../../../services/content-creator.service
 import { News } from '../../../classes/news';
 import * as moment from 'moment';
 import { FirebaseService } from '../../../../shared/firebase/firebase.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-news-create',
@@ -21,10 +22,13 @@ export class NewsCreateComponent implements OnInit {
   disableButtonSave: boolean = false;
   newsPosition:number = 0;
   news;
+  imageFile: File;
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
+  constructor(private _contentCreateService:ContentCreatorService, 
+              private _firebaseService:FirebaseService,
+              private _sharedService:SharedService) {
 
     this.newsCreateForm = new FormGroup({
       section: new FormControl('',Validators.required),
@@ -80,11 +84,11 @@ export class NewsCreateComponent implements OnInit {
     // )
 
     //FIREBASE
-     this._firebaseService.saveNews(newNews)
+     this._firebaseService.saveNews(newNews,this.imageFile)
      this.successMessage = "la noticia se creo exitosamente"
     setTimeout(()=>{
       this.back();
-    },2000)
+    },5000)
 
 
   }
@@ -102,6 +106,12 @@ export class NewsCreateComponent implements OnInit {
   showDialog() {
     this.display = true;
     this.news = 'news'
+  }
+
+  uploadFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this.imageFile = fileSelected
+
   }
 
 }

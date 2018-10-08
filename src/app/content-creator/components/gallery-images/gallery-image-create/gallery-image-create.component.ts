@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '../../../../../../node_modul
 import { GalleryImage } from '../../../classes/galleryImage';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { FirebaseService } from '../../../../shared/firebase/firebase.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-gallery-image-create',
@@ -19,10 +20,13 @@ export class GalleryImageCreateComponent implements OnInit {
   display: boolean = false;
   galleryImage;
   imagePosition: number = 0;
+  imageFile: File;
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
+  constructor(private _contentCreateService:ContentCreatorService, 
+              private _firebaseService:FirebaseService,
+              private _sharedService:SharedService) {
 
     this.galleryImageCreateForm = new FormGroup({
       title: new FormControl('',Validators.required),
@@ -65,11 +69,11 @@ export class GalleryImageCreateComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.saveGalleryImage(newGalleryImage)
+    this._firebaseService.saveGalleryImage(newGalleryImage,this.imageFile)
     this.successMessage = "la imagen se creo exitosamente"
     setTimeout(()=>{
       this.back();
-    },2000)
+    },5000)
 
 
   }
@@ -86,6 +90,12 @@ export class GalleryImageCreateComponent implements OnInit {
   getPosition(event){
     this.display = event.dialog
     this.imagePosition = event.position
+  }
+
+  uploadFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this.imageFile = fileSelected
+
   }
 
 }

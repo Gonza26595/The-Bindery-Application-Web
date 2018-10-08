@@ -3,6 +3,7 @@ import { GalleryImage } from '../../../classes/galleryImage';
 import { Validators, FormGroup, FormControl } from '../../../../../../node_modules/@angular/forms';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { FirebaseService } from '../../../../shared/firebase/firebase.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-gallery-image-edit',
@@ -21,7 +22,9 @@ export class GalleryImageEditComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
+  constructor(private _contentCreateService:ContentCreatorService, 
+              private _firebaseService:FirebaseService,
+              private _sharedService:SharedService) {
 
     this.galleryImageEditForm = new FormGroup({
       title: new FormControl('',Validators.required),
@@ -102,6 +105,13 @@ export class GalleryImageEditComponent implements OnInit {
   getPosition(event){
     this.display = event.dialog
     this.imagePosition = event.position
+  }
+
+  uploadFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this._sharedService.uploadFile(fileSelected)
+    console.log(fileSelected)
+
   }
 
 }

@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '../../../../../../node_modul
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { Event } from '../../../classes/event';
 import { FirebaseService } from '../../../../shared/firebase/firebase.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-event-edit',
@@ -19,7 +20,9 @@ export class EventEditComponent implements OnInit {
   event;
   eventPosition;
 
-  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
+  constructor(private _contentCreateService:ContentCreatorService, 
+              private _firebaseService:FirebaseService,
+              private _sharedService:SharedService) {
 
     this.eventEditForm = new FormGroup({
       title : new FormControl('',Validators.required),
@@ -99,6 +102,16 @@ export class EventEditComponent implements OnInit {
     this.display = event.dialog
     this.eventPosition = event.position
   }
+
+  uploadFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this._sharedService.uploadFile(fileSelected)
+    console.log(fileSelected)
+
+  }
+
+
+  
 
 }
 

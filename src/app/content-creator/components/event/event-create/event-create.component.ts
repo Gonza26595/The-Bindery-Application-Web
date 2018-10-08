@@ -4,6 +4,7 @@ import { Location } from '../../../../../../node_modules/@angular/common';
 import { ContentCreatorService } from '../../../services/content-creator.service';
 import { Event } from '../../../classes/event';
 import { FirebaseService } from '../../../../shared/firebase/firebase.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 @Component({
   selector: 'app-event-create',
@@ -20,8 +21,12 @@ export class EventCreateComponent implements OnInit {
   disableButtonSave: boolean = false;
   event;
   eventPosition: number = 0;
+  imageFile: File;
 
-  constructor(private _location:Location,private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
+  constructor(private _location:Location,
+              private _contentCreateService:ContentCreatorService,
+              private _firebaseService:FirebaseService,
+              private _sharedService:SharedService) {
 
     this.eventCreateForm = new FormGroup({
       title : new FormControl('',Validators.required),
@@ -70,16 +75,11 @@ export class EventCreateComponent implements OnInit {
     //FIREBASE
 
 
-      this._firebaseService.saveEvent(newEvent);
+      this._firebaseService.saveEvent(newEvent,this.imageFile);
       this.successMessage = "el evento se creo exitosamente"
     setTimeout(()=>{
       this.back();
-    },2000)
-
-
-
-
-  }
+    },4000)}
 
 
   showDialog() {
@@ -90,5 +90,11 @@ export class EventCreateComponent implements OnInit {
   getPosition(event){
     this.display = event.dialog
     this.eventPosition = event.position
+  }
+
+  uploadFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this.imageFile = fileSelected
+
   }
 }

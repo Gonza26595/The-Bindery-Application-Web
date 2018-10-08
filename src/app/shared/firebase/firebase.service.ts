@@ -4,6 +4,7 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { TheBinderyContent } from '../../content-creator/classes/theBinderyContent';
 import { Observable, observable } from '../../../../node_modules/rxjs';
 import { FirebaseFirestore, FirebaseDatabase } from '../../../../node_modules/@angular/fire';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 
 
@@ -16,15 +17,20 @@ export class FirebaseService {
 
   items: Observable<any[]>;
 
-  constructor(private _db:AngularFireDatabase, private _store:AngularFirestore) {
+  constructor(private _db:AngularFireDatabase, 
+              private _store:AngularFirestore,
+              private _storage:AngularFireStorage) {
   }
 
 
-  public saveNews(data){
+  public saveNews(data,imageFile){
     data.id = Math.floor(Math.random() * 1000000000);
-    const itemRef = this._db.object('news/' + data.id);
+    const dataRef = this._db.object('news/' + data.id);
+    const imageRef = this._storage.ref('news/' + data.id);
+    imageRef.put(imageFile);
     this._db.list('/news').query.once("value").then(
       result=>{
+        if(result.val() != null || result.val() != undefined){
        var keys = Object.keys(result.val())
         for(let key of keys){
           this._db.object('/news/' + key).query.once("value").then(
@@ -33,18 +39,23 @@ export class FirebaseService {
                 this._db.object('news/'+ result.val().id).update({'position':'0'});
               }
             })
-        }
+        }}
       })
-         itemRef.set(data);
+         dataRef.set(data);
+         
+
 
 
   }
 
-  public saveEvent(data:TheBinderyContent){
+  public saveEvent(data:TheBinderyContent,imageFile){
     data.id = Math.floor(Math.random() * 1000000000);
-    const itemRef = this._db.object('events/' + data.id);
+    const dataRef = this._db.object('events/' + data.id);
+    const imageRef = this._storage.ref('events/' + data.id);
+    imageRef.put(imageFile);
     this._db.list('/events').query.once("value").then(
       result=>{
+        if(result.val() != null || result.val() != undefined){
        var keys = Object.keys(result.val())
         for(let key of keys){
           this._db.object('/events/' + key).query.once("value").then(
@@ -53,17 +64,21 @@ export class FirebaseService {
                 this._db.object('events/'+ result.val().id).update({'position':'0'});
               }
             })
-        }
+        }}
       })
-         itemRef.set(data);
+         dataRef.set(data);
+    
 
   }
 
-  public saveGalleryImage(data:TheBinderyContent){
+  public saveGalleryImage(data:TheBinderyContent,imageFile){
     data.id = Math.floor(Math.random() * 1000000000);
-    const itemRef = this._db.object('gallery-images/' + data.id);
+    const dataRef = this._db.object('gallery-images/' + data.id);
+    const imageRef = this._storage.ref('gallery-images/' + data.id);
+    imageRef.put(imageFile);
     this._db.list('/gallery-images').query.once("value").then(
       result=>{
+        if(result.val() != null || result.val() != undefined){
        var keys = Object.keys(result.val())
         for(let key of keys){
           this._db.object('/gallery-images/' + key).query.once("value").then(
@@ -72,9 +87,10 @@ export class FirebaseService {
                 this._db.object('gallery-images/'+ result.val().id).update({'position':'0'});
               }
             })
-        }
+        }}
       })
-         itemRef.set(data);
+         dataRef.set(data);
+         
   }
 
 
@@ -148,6 +164,19 @@ export class FirebaseService {
          itemRef.update(data);
   }
 
+
+  public getNewsImageById(newsId){
+    return this._storage.ref('news/' + newsId).getDownloadURL();
+  }
+
+  public getEventImageById(eventId){
+    return this._storage.ref('events/' + eventId).getDownloadURL();
+  }
+
+  public getGalleryImageById(galleryImageId){
+    return this._storage.ref('gallery-images/' + galleryImageId).getDownloadURL();
+  }
+
   public getNewsById(newsId){
     return  this._db.object('news/'+ newsId).valueChanges() ;
   }
@@ -159,5 +188,7 @@ export class FirebaseService {
   public getImageById(galleryImageId){
     return  this._db.object('gallery-images/'+ galleryImageId).valueChanges() ;
   }
+
+
 
 }

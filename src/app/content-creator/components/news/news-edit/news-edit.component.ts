@@ -4,6 +4,7 @@ import { ContentCreatorService } from '../../../services/content-creator.service
 import { News } from '../../../classes/news';
 import * as moment from 'moment';
 import { FirebaseService } from '../../../../shared/firebase/firebase.service';
+import { SharedService } from '../../../../shared/services/shared.service';
 
 
 @Component({
@@ -24,7 +25,9 @@ export class NewsEditComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, private _firebaseService:FirebaseService) {
+  constructor(private _contentCreateService:ContentCreatorService, 
+              private _firebaseService:FirebaseService,
+              private _sharedService: SharedService) {
 
     this.newsEditForm = new FormGroup({
       section: new FormControl('',Validators.required),
@@ -135,6 +138,13 @@ export class NewsEditComponent implements OnInit {
   getPosition(event){
     this.display = event.dialog
     this.newsPosition = event.position
+  }
+
+  uploadFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this._sharedService.uploadFile(fileSelected)
+    console.log(fileSelected)
+
   }
 
 }

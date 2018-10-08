@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import {AngularFireModule} from '@angular/fire'
 import {AngularFireDatabaseModule} from '@angular/fire/database'
 import { AngularFirestoreModule } from '../../node_modules/@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 
@@ -32,7 +33,9 @@ import { AngularFirestoreModule } from '../../node_modules/@angular/fire/firesto
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase,'prueba-4db59'),
     AngularFireDatabaseModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireStorageModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

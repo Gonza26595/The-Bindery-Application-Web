@@ -1,17 +1,17 @@
-
 <main role="main" class="container">
-<app-status-message [successMessage]="successMessage"></app-status-message>
-<div>
+    <app-status-message [successMessage]="successMessage"></app-status-message>
+    <div>
         <div class=" starter-template">
-                <div class="row">
-                    <div class="col-10">
-                        <h1 class="mt-4 mb-4">Create new image</h1>
-                    </div>
-                    <div class="col-2">
-                        <button (click)="showDialog()" class="btn btn-xl btn-primary btn-block mt-5 mb-4">ubicacion</button>
-                    </div>
+            <div class="row mb-3">
+                <div class="col-8">
+                    <h1 class="mt-4 mb-4">Create new image</h1>
+                </div>
+                <div class="row col-4 mb-3">
+                    <button (click)="showDialog()" class="col-5 btn btn-xl btn-primary btn-block mt-5 mb-4">Ubicacion</button>
+                    <input id="file-field" name="file-field" (change)="uploadFile($event)" type="file" accept=".png,.jpg,.jpeg">
                 </div>
             </div>
+        </div>
 <form class="event-creation m-auto w-50" (keydown.enter)="$event.preventDefault()"[formGroup]="galleryImageCreateForm">
    <div class="form-group mb-4">
       <input type="text" formControlName="title"  class="form-control" id="title" placeholder="Coloque el título" autofocus>
