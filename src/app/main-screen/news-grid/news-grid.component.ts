@@ -13,6 +13,7 @@ export class NewsGridComponent implements OnInit {
 
 
   newsList= new Array();
+  newsImagesList = new Array();
   newsId;
   detailList = new Array();
 
@@ -39,6 +40,9 @@ export class NewsGridComponent implements OnInit {
        }
     )
 
+    this.newsImagesList = this._firebaseService.getNewsImages();
+
+
   }
 
 
@@ -63,30 +67,41 @@ public goToDetail(position){
     for(let news of newsList){
       if(news.position == 1){
         document.querySelector('#news-title-1').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 2){
         document.querySelector('#news-title-2').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 3){
         document.querySelector('#news-title-3').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 4){
         document.querySelector('#news-title-4').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 5){
         document.querySelector('#news-title-5').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 6){
         document.querySelector('#news-title-6').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 7){
         document.querySelector('#news-title-7').innerHTML = news.title;
-
+        this.setNewsImagesById(news.id,news.position);
       } else if (news.position == 8){
         document.querySelector('#news-title-8').innerHTML = news.title;
+        this.setNewsImagesById(news.id,news.position);
 
       }
     }
+  }
+
+
+  public setNewsImagesById(newsId,imagePosition){
+    this._firebaseService.getNewsImageById(newsId).subscribe(
+      data=>{
+       let newsImage =  document.getElementById('news-image-' + imagePosition) as HTMLImageElement;
+       newsImage.src = data;
+      }
+    )
   }
 
 

@@ -19,8 +19,9 @@ export class EventEditComponent implements OnInit {
   display:boolean;
   event;
   eventPosition;
+  imageFile: File;
 
-  constructor(private _contentCreateService:ContentCreatorService, 
+  constructor(private _contentCreateService:ContentCreatorService,
               private _firebaseService:FirebaseService,
               private _sharedService:SharedService) {
 
@@ -87,7 +88,7 @@ export class EventEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateEvent(this.eventId,eventUpdated);
+    this._firebaseService.updateEvent(this.eventId,eventUpdated,this.imageFile);
 
 
   }
@@ -105,13 +106,12 @@ export class EventEditComponent implements OnInit {
 
   uploadFile(event){
     const fileSelected: File = event.srcElement.files[0];
-    this._sharedService.uploadFile(fileSelected)
-    console.log(fileSelected)
+    this.imageFile = fileSelected;
 
   }
 
 
-  
+
 
 }
 

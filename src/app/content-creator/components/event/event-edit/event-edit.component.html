@@ -23,7 +23,7 @@
         <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
       </div>
       <div class=" col-6 mt-3">
-          <button type="submit" [disabled]="disableButtonSave || eventPosition == 0 || eventEditForm.invalid" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateEvent()">Save</button>
+          <button type="submit" [disabled]="disableButtonSave || eventPosition == 0 || eventEditForm.invalid || imageFile == undefined" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateEvent()">Save</button>
         </div>
       </div>
 

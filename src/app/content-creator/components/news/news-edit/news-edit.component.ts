@@ -22,10 +22,11 @@ export class NewsEditComponent implements OnInit {
   display:boolean = false;
   newsPosition: number;
   news;
+  imageFile:File;
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, 
+  constructor(private _contentCreateService:ContentCreatorService,
               private _firebaseService:FirebaseService,
               private _sharedService: SharedService) {
 
@@ -117,7 +118,7 @@ export class NewsEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateNews(this.newsId,newsUpdated)
+    this._firebaseService.updateNews(this.newsId,newsUpdated,this.imageFile)
     this.successMessage = "la imagen se actualizo exitosamente"
     setTimeout(()=>{
       this.back();
@@ -142,8 +143,7 @@ export class NewsEditComponent implements OnInit {
 
   uploadFile(event){
     const fileSelected: File = event.srcElement.files[0];
-    this._sharedService.uploadFile(fileSelected)
-    console.log(fileSelected)
+    this.imageFile = fileSelected;
 
   }
 

@@ -50,6 +50,10 @@
         display: none;
     }
 
+    .carousel-item img {
+        height: 350px;
+    }
+
     .carousel{
         display: block!important;
     }

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase} from '../../../../node_modules/@angular/fire/database';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { TheBinderyContent } from '../../content-creator/classes/theBinderyContent';
-import { Observable, observable } from '../../../../node_modules/rxjs';
-import { FirebaseFirestore, FirebaseDatabase } from '../../../../node_modules/@angular/fire';
+import { Observable} from '../../../../node_modules/rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 
 
@@ -17,7 +16,7 @@ export class FirebaseService {
 
   items: Observable<any[]>;
 
-  constructor(private _db:AngularFireDatabase, 
+  constructor(private _db:AngularFireDatabase,
               private _store:AngularFirestore,
               private _storage:AngularFireStorage) {
   }
@@ -42,7 +41,7 @@ export class FirebaseService {
         }}
       })
          dataRef.set(data);
-         
+
 
 
 
@@ -67,7 +66,7 @@ export class FirebaseService {
         }}
       })
          dataRef.set(data);
-    
+
 
   }
 
@@ -90,7 +89,7 @@ export class FirebaseService {
         }}
       })
          dataRef.set(data);
-         
+
   }
 
 
@@ -113,8 +112,69 @@ export class FirebaseService {
     return  this.items ;
   }
 
-  public updateNews(newsId,data:TheBinderyContent){
+  public getNewsImages(){
+
+    let newsImagesList = new Array();
+    this._db.list('news').valueChanges().subscribe(
+      data=>{
+        let newsData =new Array();
+        newsData = data;
+       for(let newsImage of newsData){
+         this._storage.ref('news/'+ newsImage.id).getDownloadURL().subscribe(
+           data=>{
+            newsImagesList.push({'newsId': newsImage.id ,'image':data,'position':newsImage.position});
+           }, error=>{
+           }
+         )
+       }
+      }
+    )
+
+    return newsImagesList;
+  }
+
+  public getEventImages(){
+    let eventsImagesList = new Array();
+    this._db.list('events').valueChanges().subscribe(
+      data=>{
+        let eventsData =new Array();
+        eventsData = data;
+       for(let eventImage of eventsData){
+         this._storage.ref('events/'+ eventImage.id).getDownloadURL().subscribe(
+           data=>{
+             eventsImagesList.push({'eventId': eventImage.id ,'image':data, 'position':eventImage.position});
+           }
+         )
+       }
+      }
+    )
+
+    return eventsImagesList;
+  }
+
+  public getGalleryImages(){
+    let galleryImagesList = new Array();
+    this._db.list('gallery-images').valueChanges().subscribe(
+      data=>{
+        let galleryData =new Array();
+        galleryData = data;
+       for(let galleryImage of galleryData){
+         this._storage.ref('gallery-images/'+ galleryImage.id).getDownloadURL().subscribe(
+           data=>{
+             galleryImagesList.push({'galleryImageId': galleryImage.id ,'image':data,'position':galleryImage.position});
+           }
+         )
+       }
+      }
+    )
+
+    return galleryImagesList;
+  }
+
+  public updateNews(newsId,data:TheBinderyContent,imageFile){
     const itemRef = this._db.object('news/' + newsId);
+    const imageRef = this._storage.ref('news/' + newsId);
+    imageRef.put(imageFile)
     this._db.list('/news').query.once("value").then(
       result=>{
        var keys = Object.keys(result.val())
@@ -130,8 +190,10 @@ export class FirebaseService {
          itemRef.update(data);
   }
 
-  public updateEvent(eventId,data:TheBinderyContent){
+  public updateEvent(eventId,data:TheBinderyContent,imageFile){
     const itemRef = this._db.object('events/' + eventId);
+    const imageRef = this._storage.ref('events/' + eventId);
+    imageRef.put(imageFile)
     this._db.list('/events').query.once("value").then(
       result=>{
        var keys = Object.keys(result.val())
@@ -147,8 +209,10 @@ export class FirebaseService {
          itemRef.update(data);
   }
 
-  public updateGalleryImage(galleryImageId,data:TheBinderyContent){
+  public updateGalleryImage(galleryImageId,data:TheBinderyContent,imageFile){
     const itemRef = this._db.object('gallery-images/' + galleryImageId);
+    const imageRef = this._storage.ref('gallery-images/' + galleryImageId);
+    imageRef.put(imageFile)
     this._db.list('/gallery-images').query.once("value").then(
       result=>{
        var keys = Object.keys(result.val())

@@ -1,21 +1,21 @@
 <div class="gallery mb-1" style="height: 530px">
   <div style="height: 100%;" class="row h-50">
    <div  (click)="showDialog(1,400)" style="height: 100%" class="col-3 pl-0 pr-1">
-     <img id="imagen" class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
+     <img id="gallery-image-1" class="w-100 h-100" alt="">
    </div>
    <div  (click)="showDialog(2,400)" style="height: 100%;" class="col-3 pl-0 pr-1">
-      <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
+      <img id="gallery-image-2" class="w-100 h-100" alt="">
    </div>
    <div  (click)="showDialog(3,600)" style="height: 100%;" class="col-6 pl-0">
-      <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
+      <img id="gallery-image-3" class="w-100 h-100"  alt="">
    </div>
   </div>
   <div style="height: 100%;" class="row h-50">
   <div  (click)="showDialog(4,600)" style="height: 100%;" class="col-6 pl-0 pt-1 pr-1">
-      <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
+      <img id="gallery-image-4" class="w-100 h-100"  alt="">
   </div>
   <div (click)="showDialog(5,600)" style="height: 100%;" class="col-6 pt-1 pl-0">
-      <img class="w-100 h-100" src="assets/images/masquerade.jpg" alt="">
+      <img id="gallery-image-5" class="w-100 h-100" alt="">
   </div>
     </div>
     <div class="dialog-image"></div>
@@ -25,7 +25,7 @@
     <div>
     <div style="width: 90%" class="m-auto row pl-5">
         <div class="">
-                <img src="assets/images/masquerade.jpg" class="dialog-image position-relative mt-3" [ngStyle]="setImageStyles()"/>
+                <img  [src]="image" class="dialog-image position-relative mt-3" [ngStyle]="setImageStyles()"/>
                 <p style="font-weight: 500;font-family: 'Fira Sans Condensed',sans-serif; width: 225px;background: linear-gradient(to right, rgba(23,217,194,1) 0%, rgba(23,217,194,1) 1%, rgba(0,0,0,1) 100%);" class="p-3 pr-0 mt-3">photo by {{imageAuthor}}</p>
         </div>
     <div class="modalContent p-4 pl-5 pr-5  mt-4">
@@ -44,19 +44,19 @@
 <div id="carouselExampleIndicators" class="carousel slide mb-1" data-interval='4000' data-ride="carousel">
         <div class="carousel-inner">
           <div (click)="showDialog(1)" class="carousel-item active">
-            <img class="d-block w-100"  src="assets/images/masquerade.jpg"  alt="First slide">
+            <img id="mobile-gallery-image-1" class="d-block w-100"   alt="First slide">
           </div>
           <div (click)="showDialog(2)" class="carousel-item">
-            <img class="d-block w-100" src="assets/images/masquerade.jpg" alt="Second slide">
+            <img id="mobile-gallery-image-2" class="d-block w-100" alt="Second slide">
           </div>
           <div (click)="showDialog(3)" class="carousel-item">
-            <img class="d-block w-100" src="assets/images/masquerade.jpg" alt="Third slide">
+            <img id="mobile-gallery-image-3" class="d-block  w-100"  alt="Third slide">
           </div>
           <div (click)="showDialog(4)" class="carousel-item">
-            <img class="d-block w-100" src="assets/images/masquerade.jpg" alt="Fourth slide">
+            <img id="mobile-gallery-image-4" class="d-block  w-100"  alt="Fourth slide">
           </div>
           <div (click)="showDialog(5)" class="carousel-item">
-            <img class="d-block w-100" src="assets/images/masquerade.jpg" alt="Fifth slide">
+            <img id="mobile-gallery-image-5" class="d-block  w-100"  alt="Fifth slide">
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -75,7 +75,7 @@
     <div class="card" (click)='flip()'>
     <div style="width: 100%" class=""  >
         <div id="front-card" class="card__face card__face--front">
-                <img src="assets/images/masquerade.jpg" class="position-relative mt-3" style="width: 100%;height: 400px;"/>
+                <img [src]="image" class="position-relative mt-3" style="width: 100%;height: 400px;"/>
                 <p style="font-weight: 500;font-family: 'Fira Sans Condensed',sans-serif; width: 65%;background: linear-gradient(to right, rgba(23,217,194,1) 0%, rgba(23,217,194,1) 1%, rgba(0,0,0,1) 100%);" class="p-3 pr-0 mt-3">photo by {{imageAuthor}}</p>
         </div>
     <div class="modalContent p-4 pl-5 pr-5 mt-4 card__face card__face--back">

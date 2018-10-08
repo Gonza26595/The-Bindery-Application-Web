@@ -26,7 +26,7 @@ export class NewsCreateComponent implements OnInit {
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, 
+  constructor(private _contentCreateService:ContentCreatorService,
               private _firebaseService:FirebaseService,
               private _sharedService:SharedService) {
 

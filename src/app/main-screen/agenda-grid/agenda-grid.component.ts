@@ -13,7 +13,9 @@ export class AgendaGridComponent implements OnInit {
 
   display: boolean = false;
   eventsList= new Array();
+  eventImagesList = new Array();
   newsId;
+  eventImage;
   eventTitle;
   contentParagraph;
   imageElement;
@@ -33,6 +35,9 @@ export class AgendaGridComponent implements OnInit {
     // )
 
     //FIREBASE
+    this.eventImagesList = this._firebaseService.getEventImages();
+
+
     this._firebaseService.getEvents().subscribe(
       data=>{
         this.eventsList=data;
@@ -41,14 +46,24 @@ export class AgendaGridComponent implements OnInit {
       error=>{}
     )
 
+
+
   }
 
 
   public showDialog(position){
-    this.display = true;
-     let event = this.eventsList.find(i => i.position == position);
-     this.eventTitle = event.title;
-     this.contentParagraph = event.contentParagraph;
+
+
+       let event = this.eventsList.find(i => i.position == position);
+       let eventImage = this.eventImagesList.find(i => i.position == position);
+       this.eventTitle = event.title;
+       this.contentParagraph = event.contentParagraph;
+       this.eventImage = eventImage.image;
+
+       setTimeout(()=>{
+        this.display = true;
+      },500)
+
   }
 
 
@@ -61,10 +76,16 @@ export class AgendaGridComponent implements OnInit {
         document.querySelector('#event-title-1').innerHTML = event.title;
       } else if (event.position == 2){
         document.querySelector('#event-title-2').innerHTML = event.title;
+
   }
 
 }
 }
+
+
+
+
+
 
 
 }

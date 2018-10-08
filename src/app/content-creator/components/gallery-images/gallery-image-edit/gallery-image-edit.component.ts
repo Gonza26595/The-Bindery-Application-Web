@@ -19,10 +19,11 @@ export class GalleryImageEditComponent implements OnInit {
   display: boolean = false;
   galleryImage;
   imagePosition;
+  imageFile:File;
 
 
 
-  constructor(private _contentCreateService:ContentCreatorService, 
+  constructor(private _contentCreateService:ContentCreatorService,
               private _firebaseService:FirebaseService,
               private _sharedService:SharedService) {
 
@@ -86,7 +87,7 @@ export class GalleryImageEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateGalleryImage(this.galleryImageId,galleryImageUpdated)
+    this._firebaseService.updateGalleryImage(this.galleryImageId,galleryImageUpdated,this.imageFile)
     this.successMessage = "la imagen se actualizo exitosamente"
     setTimeout(()=>{
       this.back();
@@ -109,8 +110,7 @@ export class GalleryImageEditComponent implements OnInit {
 
   uploadFile(event){
     const fileSelected: File = event.srcElement.files[0];
-    this._sharedService.uploadFile(fileSelected)
-    console.log(fileSelected)
+    this.imageFile = fileSelected
 
   }
 
