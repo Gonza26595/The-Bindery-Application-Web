@@ -8,6 +8,7 @@ import { MainRoutingModule } from './main-routing.module';
 import {DialogModule} from 'primeng/dialog';
 import {TextMaskModule} from 'angular2-text-mask';
 import { GoalsComponent } from './goals/goals.component';
+import { AppResolver } from './classes/app-resolver';
 
 @NgModule({
   imports: [
@@ -18,6 +19,9 @@ import { GoalsComponent } from './goals/goals.component';
     TextMaskModule
   ],
   exports: [
+  ],
+  providers:[
+    AppResolver
   ],
   declarations: [NewsGridComponent, AgendaGridComponent, GalleryGridComponent, GoalsComponent]
 })

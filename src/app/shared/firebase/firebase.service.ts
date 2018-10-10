@@ -4,6 +4,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { TheBinderyContent } from '../../content-creator/classes/theBinderyContent';
 import { Observable} from '../../../../node_modules/rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 
 
@@ -14,19 +16,24 @@ import { AngularFireStorage } from '@angular/fire/storage';
 })
 export class FirebaseService {
 
+  private _startupData: any;
   items: Observable<any[]>;
 
   constructor(private _db:AngularFireDatabase,
               private _store:AngularFirestore,
-              private _storage:AngularFireStorage) {
+              private _storage:AngularFireStorage,
+            private _http:HttpClient) {
   }
+
+
+ 
 
 
   public saveNews(data,imageFile){
     data.id = Math.floor(Math.random() * 1000000000);
     const dataRef = this._db.object('news/' + data.id);
     const imageRef = this._storage.ref('news/' + data.id);
-    imageRef.put(imageFile);
+    imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/news').query.once("value").then(
       result=>{
         if(result.val() != null || result.val() != undefined){
@@ -51,7 +58,7 @@ export class FirebaseService {
     data.id = Math.floor(Math.random() * 1000000000);
     const dataRef = this._db.object('events/' + data.id);
     const imageRef = this._storage.ref('events/' + data.id);
-    imageRef.put(imageFile);
+    imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/events').query.once("value").then(
       result=>{
         if(result.val() != null || result.val() != undefined){
@@ -74,7 +81,7 @@ export class FirebaseService {
     data.id = Math.floor(Math.random() * 1000000000);
     const dataRef = this._db.object('gallery-images/' + data.id);
     const imageRef = this._storage.ref('gallery-images/' + data.id);
-    imageRef.put(imageFile);
+    imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/gallery-images').query.once("value").then(
       result=>{
         if(result.val() != null || result.val() != undefined){
@@ -174,7 +181,7 @@ export class FirebaseService {
   public updateNews(newsId,data:TheBinderyContent,imageFile){
     const itemRef = this._db.object('news/' + newsId);
     const imageRef = this._storage.ref('news/' + newsId);
-    imageRef.put(imageFile)
+    imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/news').query.once("value").then(
       result=>{
        var keys = Object.keys(result.val())
@@ -193,7 +200,7 @@ export class FirebaseService {
   public updateEvent(eventId,data:TheBinderyContent,imageFile){
     const itemRef = this._db.object('events/' + eventId);
     const imageRef = this._storage.ref('events/' + eventId);
-    imageRef.put(imageFile)
+    imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/events').query.once("value").then(
       result=>{
        var keys = Object.keys(result.val())
@@ -212,7 +219,7 @@ export class FirebaseService {
   public updateGalleryImage(galleryImageId,data:TheBinderyContent,imageFile){
     const itemRef = this._db.object('gallery-images/' + galleryImageId);
     const imageRef = this._storage.ref('gallery-images/' + galleryImageId);
-    imageRef.put(imageFile)
+    imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/gallery-images').query.once("value").then(
       result=>{
        var keys = Object.keys(result.val())
@@ -230,6 +237,11 @@ export class FirebaseService {
 
 
   public getNewsImageById(newsId){
+    this._storage.ref('news/' + newsId).getMetadata().subscribe(
+      data=>{
+        console.log(data);
+      }
+    )
     return this._storage.ref('news/' + newsId).getDownloadURL();
   }
 

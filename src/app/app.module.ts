@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { MainScreenModule } from './main-screen/main-screen.module';
@@ -14,6 +14,11 @@ import {AngularFireModule} from '@angular/fire'
 import {AngularFireDatabaseModule} from '@angular/fire/database'
 import { AngularFirestoreModule } from '../../node_modules/@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+
+import { FirebaseService } from './shared/firebase/firebase.service';
+
+
+
 
 
 
@@ -37,7 +42,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     AngularFireStorageModule
     
   ],
-  providers: [],
+  providers: [
+     
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -59,10 +59,7 @@ export class AgendaGridComponent implements OnInit {
        this.eventTitle = event.title;
        this.contentParagraph = event.contentParagraph;
        this.eventImage = eventImage.image;
-
-       setTimeout(()=>{
-        this.display = true;
-      },500)
+       this.display = true;
 
   }
 

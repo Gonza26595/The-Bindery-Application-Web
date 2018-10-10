@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, Resolve, ActivatedRoute } from '@angular/router';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
 import { Footer } from '../../../../node_modules/primeng/components/common/shared';
 import { FirebaseService } from '../../shared/firebase/firebase.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-news-grid',
@@ -18,7 +21,21 @@ export class NewsGridComponent implements OnInit {
   detailList = new Array();
 
 
-  constructor(private _router:Router, private _contentCreatorService:ContentCreatorService, private _firebaseService:FirebaseService) { }
+
+  constructor(private _router:Router,
+              private _contentCreatorService:ContentCreatorService, 
+              private _firebaseService:FirebaseService) {
+
+              }
+
+
+                    
+                
+
+               
+
+
+
 
   ngOnInit() {
 
@@ -31,17 +48,22 @@ export class NewsGridComponent implements OnInit {
     //   error=>{}
     // )
 
+    this.newsImagesList = this._firebaseService.getNewsImages();
 
     //FIREBASE
     this._firebaseService.getNews().subscribe(
-       data=>{
-         this.newsList = data
-         this.setNewsTitles(this.newsList);
-       }
-    )
+      data=>{
+        
+        this.newsList = data
+        this.setNewsTitles(this.newsList);
+        
+        
+      }
+   )
 
-    this.newsImagesList = this._firebaseService.getNewsImages();
 
+
+  
 
   }
 
@@ -98,10 +120,35 @@ public goToDetail(position){
   public setNewsImagesById(newsId,imagePosition){
     this._firebaseService.getNewsImageById(newsId).subscribe(
       data=>{
+        console.log(data);
+        if(data != undefined){
        let newsImage =  document.getElementById('news-image-' + imagePosition) as HTMLImageElement;
        newsImage.src = data;
+       this.hideLoaderImage();
+      
       }
+    }
     )
+  }
+
+
+  public hideLoaderImage(){
+    let mainImages = document.getElementsByClassName('main-image') as HTMLCollectionOf<HTMLElement>;
+
+    if (mainImages.length != 0) {
+    for(let mainImage = 0;mainImage < 8; mainImage++){
+      mainImages[mainImage].style.display = "block"
+    }
+  }
+
+    let loaderImages = document.getElementsByClassName('loader-image') as HTMLCollectionOf<HTMLElement>;
+    
+    if (loaderImages.length != 0) {
+      for(let loaderImage = 0;loaderImage < 8; loaderImage++){
+        loaderImages[loaderImage].style.display = "none"
+      }
+    }
+
   }
 
 
