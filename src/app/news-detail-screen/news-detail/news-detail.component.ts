@@ -57,6 +57,14 @@ export class NewsDetailComponent implements OnInit {
       },
       error=>{}
    )
+
+
+   this._firebaseService.getAuthorNewsImageById(this.newsId).subscribe(
+     data=>{
+      let galleryImage =  document.getElementById('author-image') as HTMLImageElement;
+      galleryImage.src = data;
+     }
+   )
   }
 
 
@@ -70,7 +78,9 @@ export class NewsDetailComponent implements OnInit {
     document.querySelector('.section').textContent = news.section;
     document.querySelector('.date').textContent = newsDate;
     document.querySelector('.title').textContent = news.title;
-    document.querySelector('#author').textContent = news.author;
+    document.querySelector('.author-name').textContent = news.author;
+    document.querySelector('.author-name-1').textContent = news.author;
+    document.querySelector('#author-description').textContent = news.authorDescription
     document.querySelector('#contentParagraph').innerHTML = news.contentParagraph;
 
   }

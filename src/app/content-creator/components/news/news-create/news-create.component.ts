@@ -23,6 +23,7 @@ export class NewsCreateComponent implements OnInit {
   newsPosition:number = 0;
   news;
   imageFile: File;
+  authorImageFile: File;
 
 
 
@@ -35,7 +36,8 @@ export class NewsCreateComponent implements OnInit {
       newsDate: new FormControl('',Validators.required),
       title: new FormControl('',Validators.required),
       contentParagraph: new FormControl('',Validators.required),
-      author: new FormControl('',Validators.required)
+      author: new FormControl('',Validators.required),
+      authorDescription : new FormControl('',Validators.required)
 
     })
 
@@ -57,6 +59,7 @@ export class NewsCreateComponent implements OnInit {
       newsDate,
       this.newsCreateForm.value.author,
       this.newsCreateForm.value.section,
+      this.newsCreateForm.value.authorDescription,
       this.newsPosition
     )
 
@@ -84,7 +87,7 @@ export class NewsCreateComponent implements OnInit {
     // )
 
     //FIREBASE
-     this._firebaseService.saveNews(newNews,this.imageFile)
+     this._firebaseService.saveNews(newNews,this.imageFile, this.authorImageFile)
      this.successMessage = "la noticia se creo exitosamente"
     setTimeout(()=>{
       this.back();
@@ -111,6 +114,27 @@ export class NewsCreateComponent implements OnInit {
   uploadFile(event){
     const fileSelected: File = event.srcElement.files[0];
     this.imageFile = fileSelected
+
+  }
+
+  uploadAuthorFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this.authorImageFile = fileSelected;
+    let galleryImage =  document.getElementById('author-image') as HTMLImageElement;
+
+    var reader = new FileReader();
+      reader.onloadend = (function(data) {
+        galleryImage.src = reader.result;
+
+      })
+      if (fileSelected) {
+        reader.readAsDataURL(fileSelected);
+      } else {
+        galleryImage.src = "";
+      }
+
+      galleryImage.classList.remove('border')
+
 
   }
 

@@ -26,13 +26,15 @@ export class FirebaseService {
   }
 
 
- 
 
 
-  public saveNews(data,imageFile){
+
+  public saveNews(data,imageFile,authorImageFile){
     data.id = Math.floor(Math.random() * 1000000000);
     const dataRef = this._db.object('news/' + data.id);
     const imageRef = this._storage.ref('news/' + data.id);
+    const authorImageRef = this._storage.ref('news-author/' + data.id);
+    authorImageRef.put(authorImageFile, {cacheControl: 'public, max-age=7200'})
     imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/news').query.once("value").then(
       result=>{
@@ -178,9 +180,11 @@ export class FirebaseService {
     return galleryImagesList;
   }
 
-  public updateNews(newsId,data:TheBinderyContent,imageFile){
+  public updateNews(newsId,data:TheBinderyContent,imageFile,authorImageFile){
     const itemRef = this._db.object('news/' + newsId);
     const imageRef = this._storage.ref('news/' + newsId);
+    const authorImageRef = this._storage.ref('news-author/' + newsId);
+    authorImageRef.put(authorImageFile, {cacheControl: 'public, max-age=7200'})
     imageRef.put(imageFile, { cacheControl: 'public, max-age=7200' })
     this._db.list('/news').query.once("value").then(
       result=>{
@@ -237,12 +241,11 @@ export class FirebaseService {
 
 
   public getNewsImageById(newsId){
-    this._storage.ref('news/' + newsId).getMetadata().subscribe(
-      data=>{
-        console.log(data);
-      }
-    )
     return this._storage.ref('news/' + newsId).getDownloadURL();
+  }
+
+  public getAuthorNewsImageById(newsId){
+    return this._storage.ref('news-author/' + newsId).getDownloadURL();
   }
 
   public getEventImageById(eventId){

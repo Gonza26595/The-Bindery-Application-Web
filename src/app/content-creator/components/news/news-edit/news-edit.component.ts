@@ -23,6 +23,7 @@ export class NewsEditComponent implements OnInit {
   newsPosition: number;
   news;
   imageFile:File;
+  authorImageFile: File;
 
 
 
@@ -35,7 +36,8 @@ export class NewsEditComponent implements OnInit {
       newsDate: new FormControl('',Validators.required),
       title: new FormControl('',Validators.required),
       contentParagraph: new FormControl('',Validators.required),
-      author: new FormControl('',Validators.required)
+      author: new FormControl('',Validators.required),
+      authorDescription: new FormControl('',Validators.required)
 
     })
 
@@ -70,6 +72,7 @@ export class NewsEditComponent implements OnInit {
     this.newsEditForm.controls['newsDate'].setValue(newsDate);
     this.newsEditForm.controls['author'].setValue(news.author);
     this.newsEditForm.controls['section'].setValue(news.section);
+    this.newsEditForm.controls['authorDescription'].setValue(news.authorDescription)
     this.newsPosition = news.position
   }
 
@@ -92,6 +95,7 @@ export class NewsEditComponent implements OnInit {
       newsDate,
       this.newsEditForm.value.author,
       this.newsEditForm.value.section,
+      this.newsEditForm.value.authorDescription,
       this.newsPosition
     )
 
@@ -118,7 +122,7 @@ export class NewsEditComponent implements OnInit {
     // )
 
     //FIREBASE
-    this._firebaseService.updateNews(this.newsId,newsUpdated,this.imageFile)
+    this._firebaseService.updateNews(this.newsId,newsUpdated,this.imageFile,this.authorImageFile)
     this.successMessage = "la imagen se actualizo exitosamente"
     setTimeout(()=>{
       this.back();
@@ -145,6 +149,28 @@ export class NewsEditComponent implements OnInit {
     const fileSelected: File = event.srcElement.files[0];
     this.imageFile = fileSelected;
 
+
+
+
+  }
+
+  uploadAuthorFile(event){
+    const fileSelected: File = event.srcElement.files[0];
+    this.authorImageFile = fileSelected;
+     let galleryImage =  document.getElementById('author-image') as HTMLImageElement;
+
+    var reader = new FileReader();
+      reader.onloadend = (function(data) {
+        galleryImage.src = reader.result;
+
+      })
+      if (fileSelected) {
+        reader.readAsDataURL(fileSelected);
+      } else {
+        galleryImage.src = "";
+      }
+
+      galleryImage.classList.remove('border')
   }
 
 }

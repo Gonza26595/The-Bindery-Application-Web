@@ -26,6 +26,21 @@
    <div class="form-group mb-4">
       <input type="text" formControlName="title"  class="form-control" id="title" placeholder="Coloque el título" autofocus>
     </div>
+    <div class="row">
+            <div class="col-6">
+                <img id="author-image" class="w-50 h-75 ml-3 mt-2 border">
+                <input id="file-field mt-2" name="file-field" (change)="uploadAuthorFile($event)" type="file" accept=".png,.jpg,.jpeg">
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Coloque el autor" formControlName="author" id="author">
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" placeholder="Coloque la descripcion del autor" formControlName="authorDescription" id="author" rows="5"></textarea>
+                </div>
+            </div>
+
+        </div>
     <div class="form-group mt-5">
         <ckeditor
         formControlName="contentParagraph"
@@ -41,7 +56,7 @@
           <button type="submit"  class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="back()" >Cancel</button>
         </div>
         <div class=" col-6 mt-3">
-            <button type="submit" [disabled]="disableButtonSave || newsPosition == 0 || newsEditForm.invalid || imageFile == undefined" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateNews()">Save</button>
+            <button type="submit" [disabled]="disableButtonSave || newsPosition == 0 || newsEditForm.invalid || imageFile == undefined || authorImageFile == undefined" class="mb-4 float-right btn btn-lg btn-primary btn-block w-100 container" (click)="updateNews()">Save</button>
           </div>
         </div>
   </form>
