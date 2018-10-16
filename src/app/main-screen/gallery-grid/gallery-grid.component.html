@@ -1,4 +1,5 @@
-<div class="gallery mb-1" style="height: 530px">
+<div class="gallery mb-1" style="height: 550px">
+  <h2 style="position: absolute;z-index: 1;width: 40%;left: 34%;text-align: center" id="the-binderys-eye">The Bindery's eye</h2>
   <div style="height: 100%;" class="row h-50">
    <div  (click)="showDialog(1,400)" style="height: 100%" class="col-3 pl-0 pr-1">
      <img id="gallery-image-1" class="w-100 h-100" alt="">
@@ -19,11 +20,11 @@
   </div>
     </div>
     <div class="dialog-image"></div>
-    <p-dialog [(visible)]="display" [modal]="true"
+    <p-dialog  [(visible)]="display" [modal]="true"
     [dismissableMask]="true" [responsive]="true" [width]="1250"  [minWidth]="200" [minY]="70"
     [maximizable]="true" [baseZIndex]="11074" >
     <div>
-    <div style="width: 90%" class="m-auto row pl-5">
+    <div  style="width: 90%" class="m-auto row pl-5">
         <div class="">
                 <img  [src]="image" class="dialog-image position-relative mt-3" [ngStyle]="setImageStyles()"/>
                 <p style="font-weight: 500;font-family: 'Fira Sans Condensed',sans-serif; width: 225px;background: linear-gradient(to right, rgba(23,217,194,1) 0%, rgba(23,217,194,1) 1%, rgba(0,0,0,1) 100%);" class="p-3 pr-0 mt-3">photo by {{imageAuthor}}</p>
@@ -42,6 +43,7 @@
 
 
 <div id="carouselExampleIndicators" class="carousel slide mb-1" data-interval='4000' data-ride="carousel">
+    <h2 style="font-size: 1.5rem;position: absolute;z-index: 1;width: 90%;left: 5%;text-align: center" id="the-binderys-eye-mobile">The Bindery's eye</h2>
         <div class="carousel-inner">
           <div (click)="showDialog(1)" class="carousel-item active">
             <img id="mobile-gallery-image-1" class="d-block w-100"   alt="First slide">
@@ -70,7 +72,7 @@
 
 
         <p-dialog [(visible)]="display" [modal]="true"
-    [dismissableMask]="true" [responsive]="true"  [minWidth]="200" [minY]="70"
+    [dismissableMask]="true" [responsive]="true"   [minWidth]="200" [minY]="70"
     [maximizable]="true" [baseZIndex]="11074" >
     <div class="card" (click)='flip()'>
     <div style="width: 100%" class=""  >

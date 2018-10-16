@@ -29,6 +29,11 @@
 
   }
 
+.ui-dialog-titlebar-close{
+    margin-left: 0px!important;
+}
+
+
   .modalContent{
     height: 550px;
     padding-left: 4rem;

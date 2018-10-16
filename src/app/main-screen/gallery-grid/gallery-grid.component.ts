@@ -56,6 +56,7 @@ public flip() {
 };
 
 
+
 public showDialog(position,imageWidth){
 
 
@@ -66,7 +67,6 @@ public showDialog(position,imageWidth){
   this.imageAuthor = image.author;
   this.imageWidth =  imageWidth;
   this.image = galleryImage.image;
-
 
     this.display = true;
 
@@ -102,6 +102,7 @@ public setGalleryImagesById(galleryImageId,imagePosition){
      let mobileGalleryImage = document.getElementById('mobile-gallery-image-' + imagePosition) as HTMLImageElement;
      galleryImage.src = data;
      mobileGalleryImage.src = data;
+
     }
   )
 }
@@ -109,7 +110,7 @@ public setGalleryImagesById(galleryImageId,imagePosition){
 
 setImageStyles(){
   let styles = {
-    'height': '300px',
+    'height': '350px',
     'width' : this.imageWidth + 'px'
   };
   return styles;
