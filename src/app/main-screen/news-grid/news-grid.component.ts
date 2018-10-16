@@ -23,16 +23,16 @@ export class NewsGridComponent implements OnInit {
 
 
   constructor(private _router:Router,
-              private _contentCreatorService:ContentCreatorService, 
+              private _contentCreatorService:ContentCreatorService,
               private _firebaseService:FirebaseService) {
 
               }
 
 
-                    
-                
 
-               
+
+
+
 
 
 
@@ -53,17 +53,17 @@ export class NewsGridComponent implements OnInit {
     //FIREBASE
     this._firebaseService.getNews().subscribe(
       data=>{
-        
+
         this.newsList = data
         this.setNewsTitles(this.newsList);
-        
-        
+
+
       }
    )
 
 
 
-  
+
 
   }
 
@@ -125,7 +125,7 @@ public goToDetail(position){
        let newsImage =  document.getElementById('news-image-' + imagePosition) as HTMLImageElement;
        newsImage.src = data;
        this.hideLoaderImage();
-      
+
       }
     }
     )
@@ -142,7 +142,7 @@ public goToDetail(position){
   }
 
     let loaderImages = document.getElementsByClassName('loader-image') as HTMLCollectionOf<HTMLElement>;
-    
+
     if (loaderImages.length != 0) {
       for(let loaderImage = 0;loaderImage < 8; loaderImage++){
         loaderImages[loaderImage].style.display = "none"

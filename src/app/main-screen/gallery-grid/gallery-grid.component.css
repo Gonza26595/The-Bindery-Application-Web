@@ -35,6 +35,14 @@
     display: none!important
 }
 
+.gallery img{
+    filter: grayscale(1);
+}
+
+.dialog-image{
+    filter: grayscale(0)!important;
+}
+
 
 ::ng-deep .ui-dialog-titlebar-close:before{
     color: white;
@@ -48,10 +56,12 @@
 
     .gallery{
         display: none;
+
     }
 
     .carousel-item img {
         height: 350px;
+        filter: grayscale(1);
     }
 
     .carousel{
