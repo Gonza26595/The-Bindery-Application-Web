@@ -16,6 +16,9 @@ export class NewsDetailComponent implements OnInit {
   newsList = new Array();
   asideList = new Array();
   newsId;
+  asideNews1;
+  asideNews2;
+  asideNews3;
 
   constructor(private _router:Router,private _contentCreatorService:ContentCreatorService,private _firebaseService:FirebaseService, private _activateRoute:ActivatedRoute) { }
 
@@ -34,7 +37,6 @@ export class NewsDetailComponent implements OnInit {
     //FIREBASE
     this._firebaseService.getNewsById(this.newsId).subscribe(
       data=>{
-        console.log(data);
         this.setNewsDetail(data);
       },
       error=>{}
@@ -53,7 +55,9 @@ export class NewsDetailComponent implements OnInit {
     this._firebaseService.getNews().subscribe(
       data=>{
         this.newsList = data;
-        this.setAsideNews(this.newsList);
+        this.setAsideNews1(this.newsList);
+        this.setAsideNews2(this.newsList);
+        this.setAsideNews3(this.newsList);
       },
       error=>{}
    )
@@ -86,27 +90,35 @@ export class NewsDetailComponent implements OnInit {
   }
 
 
-  public setAsideNews(newsList){
+  public setAsideNews1(newsList){
     var news1 = newsList[Math.floor(Math.random() * newsList.length)];
     document.getElementById('aside-1').innerHTML = news1.title;
+    this.asideNews1 = news1
     newsList.splice(newsList.indexOf(news1),1);
+  }
+
+  public setAsideNews2(newsList){
     var news2 = newsList[Math.floor(Math.random() * newsList.length)];
     document.getElementById('aside-2').innerHTML = news2.title;
+    this.asideNews2 = news2;
     newsList.splice(newsList.indexOf(news2),1);
+  }
+
+  public setAsideNews3(newsList){
     var news3 = newsList[Math.floor(Math.random() * newsList.length)];
     document.getElementById('aside-3').innerHTML = news3.title;
-    this.asideList.push(news1,news2,news3);
+    this.asideNews3 = news3
   }
 
   public goToAsideNewsDetail(position){
     if(position == 1){
-      this._router.navigate(['/news-detail/' + this.asideList[0].id]);
+      this._router.navigate(['/news-detail/' + this.asideNews1.id]);
       location.reload();
     } else if(position == 2){
-      this._router.navigate(['/news-detail/' + this.asideList[1].id]);
+      this._router.navigate(['/news-detail/' + this.asideNews2.id]);
       location.reload();
     } else if(position == 3){
-      this._router.navigate(['/news-detail/' + this.asideList[2].id]);
+      this._router.navigate(['/news-detail/' + this.asideNews3.id]);
       location.reload();
     }
 

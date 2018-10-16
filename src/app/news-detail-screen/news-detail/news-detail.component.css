@@ -75,4 +75,25 @@ h1{
     .news-elements h1{
         font-size: 2rem;
     }
+
+
+    .image-author{
+        width: 50%!important;
+        max-width: 50%!important;
+    }
+
+    .image-author img {
+        width: 70%!important;
+        height: 70%!important;
+        margin-top: 2.5rem!important;
+    }
+
+    .description-author{
+        max-width: 50%!important;
+    }
+
+    .description-author p {
+        font-size: 0.7rem;
+    }
+
 }
