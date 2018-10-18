@@ -5,12 +5,33 @@ import { Footer } from '../../../../node_modules/primeng/components/common/share
 import { FirebaseService } from '../../shared/firebase/firebase.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { fadeInContent } from '../../../../node_modules/@angular/material';
+import { $ } from '../../../../node_modules/protractor';
+import { trigger, state, transition, style, animate } from '../../../../node_modules/@angular/animations';
 
 
 @Component({
   selector: 'app-news-grid',
   templateUrl: './news-grid.component.html',
-  styleUrls: ['./news-grid.component.css']
+  styleUrls: ['./news-grid.component.css'],
+  animations: [
+    // the fade-in/fade-out animation.
+    trigger('simpleFadeAnimation', [
+
+      // the "in" style determines the "resting" state of the element when it is visible.
+      state('in', style({opacity: 1})),
+
+      // fade in when created. this could also be written as transition('void => *')
+      transition(':enter', [
+        style({opacity: 0}),
+        animate(500 )
+      ]),
+
+      // fade out when destroyed. this could also be written as transition('void => *')
+      transition(':leave',
+        animate(600, style({opacity: 0})))
+    ])
+  ]
 })
 export class NewsGridComponent implements OnInit {
 
@@ -19,6 +40,7 @@ export class NewsGridComponent implements OnInit {
   newsImagesList = new Array();
   newsId;
   detailList = new Array();
+  loader:boolean = true;
 
 
 
@@ -33,11 +55,10 @@ export class NewsGridComponent implements OnInit {
 
 
 
-
-
-
-
   ngOnInit() {
+
+
+
 
     //SQL-SERVER
     // this._contentCreatorService.getNews().subscribe(
@@ -120,7 +141,6 @@ public goToDetail(position){
   public setNewsImagesById(newsId,imagePosition){
     this._firebaseService.getNewsImageById(newsId).subscribe(
       data=>{
-        console.log(data);
         if(data != undefined){
        let newsImage =  document.getElementById('news-image-' + imagePosition) as HTMLImageElement;
        newsImage.src = data;
@@ -133,11 +153,15 @@ public goToDetail(position){
 
 
   public hideLoaderImage(){
-    let mainImages = document.getElementsByClassName('main-image') as HTMLCollectionOf<HTMLElement>;
+    let mainImages = document.getElementsByClassName('news-content') as HTMLCollectionOf<HTMLElement>;
 
     if (mainImages.length != 0) {
     for(let mainImage = 0;mainImage < 8; mainImage++){
+
       mainImages[mainImage].style.display = "block"
+
+
+
     }
   }
 

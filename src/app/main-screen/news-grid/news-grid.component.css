@@ -1,5 +1,16 @@
+
+
+
 ::ng-deep .row{
     margin-left: 0px;
+}
+
+.mat-spinner::ng-deep circle{
+     stroke: #193078!important;
+}
+
+.news-content{
+  display: none;
 }
 
 .news img{
@@ -42,9 +53,6 @@
   }
 
 
-  .image-display{
-    display: none;
-  }
 
   .banner-container img {
     filter: grayscale(0)

@@ -8,6 +8,9 @@ import { MainRoutingModule } from './main-routing.module';
 import {DialogModule} from 'primeng/dialog';
 import {TextMaskModule} from 'angular2-text-mask';
 import { GoalsComponent } from './goals/goals.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MatProgressSpinnerModule } from '@angular/material';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 
 @NgModule({
@@ -16,7 +19,11 @@ import { GoalsComponent } from './goals/goals.component';
     SharedModule,
     MainRoutingModule,
     DialogModule,
-    TextMaskModule
+    TextMaskModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
+    ProgressSpinnerModule
+
   ],
   exports: [
   ],
