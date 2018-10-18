@@ -3,10 +3,10 @@
 <div class="news container-fluid">
   <div class="row pb-2 row-1-container">
     <div class="col-xl-5 col-lg-5 col-md-5 pr-1 pl-0 news-1-container" style="height: 100%;">
-      <div [@simpleFadeAnimation]="':enter'" *ngIf="this.loader" id="loader-image-2" class="h-100 w-100 loader-image" style="background: #eeeeee">
+      <div @Fading  *ngIf="this.loader" id="loader-image-2" class="h-100 w-100 loader-image" style="background: #eeeeee">
         <mat-spinner mode="indeterminate" style="margin:0 auto;position: absolute;top: 40%;right: 40%;"></mat-spinner>
       </div>
-      <div  [@simpleFadeAnimation]="':enter'" class="news-content" style="height: 100%;width: 100%">
+      <div  class="news-content" style="height: 100%;width: 100%">
         <img id="news-image-1" class="main-image image-display h-100 w-100" style="background: #eeeeee" />
         <div id="news-content-1" class="position-relative  float-right" style="bottom: 80%">
           <h2 id="news-title-1" class="news-title position-relative p-4 text-center" style="margin-bottom: 30px; font-size: 1.2rem;background: #17d9c2;"></h2>
