@@ -11,6 +11,21 @@
                url("http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular") format("svg");
 }
 
+.mat-spinner::ng-deep circle{
+    stroke: #193078!important;
+}
+
+.gallery-content{
+    display: none;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+}
+
+
+
 
 
 ::ng-deep .ui-dialog-titlebar-close{
@@ -70,6 +85,20 @@
     .gallery{
         display: none;
 
+    }
+
+    ::ng-deep .ui-dialog{
+        left: 11px!important;
+        width: 330px!important;
+    }
+
+    .mobile-gallery-content{
+        display: none;
+        opacity: 1;
+        animation-name: fadeInOpacity;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-in;
+        animation-duration: 0.5s;
     }
 
     #the-binderys-eye-mobile{

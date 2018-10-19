@@ -1,28 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, Resolve, ActivatedRoute } from '@angular/router';
 import { ContentCreatorService } from '../../content-creator/services/content-creator.service';
-import { Footer } from '../../../../node_modules/primeng/components/common/shared';
 import { FirebaseService } from '../../shared/firebase/firebase.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { fadeInContent } from '../../../../node_modules/@angular/material';
-import { $ } from '../../../../node_modules/protractor';
-import { trigger, state, transition, style, animate } from '../../../../node_modules/@angular/animations';
+
+
 
 
 @Component({
   selector: 'app-news-grid',
   templateUrl: './news-grid.component.html',
   styleUrls: ['./news-grid.component.css'],
-  animations: [
-    trigger('Fading', [
-      state('void', style({ opacity: 0 })),
-      state('*', style({ opacity: 1 })),
-      transition(':enter', animate('500ms ease-out')),
-      transition(':leave', animate('500ms ease-in')),
-    ])
-  ]
 })
+
 export class NewsGridComponent implements OnInit {
 
 
@@ -31,6 +20,7 @@ export class NewsGridComponent implements OnInit {
   newsId;
   detailList = new Array();
   loader:boolean = true;
+
 
 
 
@@ -148,7 +138,11 @@ public goToDetail(position){
     if (mainImages.length != 0) {
     for(let mainImage = 0;mainImage < 8; mainImage++){
 
-      mainImages[mainImage].style.display = "block"
+      setTimeout(() => {
+        mainImages[mainImage].style.display = "block"
+      }, 800);
+
+
 
 
 
@@ -159,7 +153,10 @@ public goToDetail(position){
 
     if (loaderImages.length != 0) {
       for(let loaderImage = 0;loaderImage < 8; loaderImage++){
-        loaderImages[loaderImage].style.display = "none"
+        setTimeout(() => {
+          loaderImages[loaderImage].style.display = "none"
+        }, 800);
+
       }
     }
 

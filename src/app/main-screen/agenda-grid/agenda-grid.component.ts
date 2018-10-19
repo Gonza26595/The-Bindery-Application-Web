@@ -73,10 +73,24 @@ export class AgendaGridComponent implements OnInit {
         document.querySelector('#event-title-1').innerHTML = event.title;
       } else if (event.position == 2){
         document.querySelector('#event-title-2').innerHTML = event.title;
-
-  }
+      }
+      this.hideEventLoader();
 
 }
+}
+
+
+
+public hideEventLoader(){
+  setTimeout(() => {
+    document.getElementById('event-content').style.display = "block"
+  }, 800);
+
+
+  setTimeout(() => {
+    document.getElementById('loader-event').style.display = "none"
+  }, 800);
+
 }
 
 

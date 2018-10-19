@@ -51,6 +51,12 @@ h1{
         display: none;
     }
 
+    ::ng-deep #contentParagraph img {
+        max-height: 340px;
+        max-width: 360px;
+    }
+
+
     .news-content{
       padding-right: 5px!important;
     padding-left: 5px!important;
@@ -66,6 +72,8 @@ h1{
         flex: 0 0 100%;
         max-width: 100%;
     }
+
+
 
     .news-elements{
         padding: 0.5rem!important;
@@ -94,6 +102,14 @@ h1{
 
     .description-author p {
         font-size: 0.7rem;
+    }
+
+}
+
+@media only screen and (max-width: 380px){
+
+    ::ng-deep #contentParagraph img {
+        max-width: 300px;
     }
 
 }

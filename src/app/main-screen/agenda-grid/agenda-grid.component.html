@@ -1,5 +1,9 @@
 
 <div class="mb-2 agenda-container" style="background: #193078">
+  <div class="position-relative" id="loader-event" style="top: 40%">
+      <mat-spinner mode="indeterminate" style="margin:0 auto;position: absolute;top: 25%;right: 35%;"></mat-spinner>
+  </div>
+  <div id="event-content">
   <div class="w-50 agenda-title">
     <h1 class=" d-inline-block pl-4 pt-4 pb-2">The bindery</h1>
     <span class="pl-4 pt-3">agenda</span>
@@ -30,12 +34,13 @@
        </div>
     </div>
   </div>
+</div>
 
 <div>
 
 
 <p-dialog class="eventDialog" [(visible)]="display" [modal]="true"
-[dismissableMask]="true" [responsive]="true" styleClass="active" [width]="450" [minWidth]="200" [minY]="70"
+[dismissableMask]="true" [responsive]="true" [draggable]="false" styleClass="active" [width]="450" [minWidth]="200" [minY]="70"
 [maximizable]="true" [baseZIndex]="11074" >
 <div class="modalContent" style="background: #193078;">
  <h3 id="dialog-title">{{eventTitle}}</h3>

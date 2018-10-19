@@ -29,6 +29,20 @@
 
   }
 
+
+  #event-content{
+    display: none;
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
+  }
+
+  .mat-spinner::ng-deep circle{
+    stroke: #ffffff!important;
+}
+
 .ui-dialog-titlebar-close{
     margin-left: 0px!important;
 }
@@ -111,7 +125,6 @@
      }
 
   ::ng-deep .ui-dialog {
-        width: 320px!important;
         top: 65px!important;
     }
 
